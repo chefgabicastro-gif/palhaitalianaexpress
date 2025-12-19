@@ -24,7 +24,9 @@ import { KitVendaModal } from "@/components/KitVendaModal";
 import { PrimeiraVendaModal } from "@/components/PrimeiraVendaModal";
 import { ErrosComunsModal } from "@/components/ErrosComunsModal";
 import { ReceitasFitnessModal } from "@/components/ReceitasFitnessModal";
+import { InstallAppModal } from "@/components/InstallAppModal";
 import { useToast } from "@/hooks/use-toast";
+import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { recipes, getPopularRecipes } from "@/data/recipes";
 
 interface Sale {
@@ -57,6 +59,8 @@ const Index = () => {
   const [primeiraVendaOpen, setPrimeiraVendaOpen] = useState(false);
   const [errosComunsOpen, setErrosComunsOpen] = useState(false);
   const [receitasFitnessOpen, setReceitasFitnessOpen] = useState(false);
+  const [installAppOpen, setInstallAppOpen] = useState(false);
+  const pwa = usePWAInstall();
   const [sales, setSales] = useState<Sale[]>([]);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [modulesProgress, setModulesProgress] = useState(0);
@@ -501,25 +505,47 @@ const Index = () => {
         </div>
 
         {/* Banner de Instalação Premium */}
-        <div className="animate-fade-in" style={{ animationDelay: '1100ms' }}>
-          <div className="card-glass p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 shine-effect">
-            <div className="flex items-center gap-4">
-              <div className="icon-box-premium">
-                <Download className="w-6 h-6 text-primary" />
+        {!pwa.isInstalled && (
+          <div className="animate-fade-in" style={{ animationDelay: '1100ms' }}>
+            <div 
+              className="card-glass p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 shine-effect cursor-pointer"
+              onClick={() => setInstallAppOpen(true)}
+            >
+              <div className="flex items-center gap-4">
+                <div className="icon-box-premium">
+                  <Download className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-heading font-bold text-foreground flex items-center gap-2">
+                    Instalar App
+                    <Sparkles className="w-4 h-4 text-primary" />
+                  </h3>
+                  <p className="text-sm text-muted-foreground">Acesso offline no celular</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-heading font-bold text-foreground flex items-center gap-2">
-                  Instalar App
-                  <Sparkles className="w-4 h-4 text-primary" />
-                </h3>
-                <p className="text-sm text-muted-foreground">Acesso offline no celular</p>
-              </div>
+              <button 
+                className="btn-premium w-full sm:w-auto"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (pwa.canPromptInstall) {
+                    pwa.promptInstall().then(success => {
+                      if (success) {
+                        toast({
+                          title: "App instalado!",
+                          description: "Agora você pode acessar pela tela inicial.",
+                        });
+                      }
+                    });
+                  } else {
+                    setInstallAppOpen(true);
+                  }
+                }}
+              >
+                Instalar Agora
+              </button>
             </div>
-            <button className="btn-premium w-full sm:w-auto">
-              Instalar Agora
-            </button>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Modais */}
@@ -572,6 +598,10 @@ const Index = () => {
       <ReceitasFitnessModal
         open={receitasFitnessOpen}
         onOpenChange={setReceitasFitnessOpen}
+      />
+      <InstallAppModal
+        open={installAppOpen}
+        onOpenChange={setInstallAppOpen}
       />
     </div>
   );
