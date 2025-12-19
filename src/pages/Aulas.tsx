@@ -9,7 +9,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
-import { videoLessons, VideoLesson, getYoutubeThumbnail } from '@/data/videoLessons';
+import { videoLessons, VideoLesson } from '@/data/videoLessons';
 import { VideoPlayerModal } from '@/components/VideoPlayerModal';
 
 export default function Aulas() {
@@ -192,7 +192,7 @@ export default function Aulas() {
                   {/* Thumbnail */}
                   <div className="relative aspect-video overflow-hidden">
                     <img 
-                      src={getYoutubeThumbnail(lesson.youtubeId, 'hq')}
+                      src={lesson.thumbnail}
                       alt={lesson.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
@@ -285,7 +285,7 @@ export default function Aulas() {
                   {/* Thumbnail */}
                   <div className="relative aspect-video overflow-hidden">
                     <img 
-                      src={getYoutubeThumbnail(lesson.youtubeId, 'hq')}
+                      src={lesson.thumbnail}
                       alt={lesson.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
