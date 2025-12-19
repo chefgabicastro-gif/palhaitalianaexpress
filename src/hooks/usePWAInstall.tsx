@@ -74,6 +74,7 @@ export function usePWAInstall() {
     const handleAppInstalled = () => {
       setDeferredPrompt(null);
       localStorage.setItem('pwa-installed', 'true');
+      localStorage.setItem('pwa-just-installed', 'true');
       setState(prev => ({ 
         ...prev, 
         isInstalled: true, 
