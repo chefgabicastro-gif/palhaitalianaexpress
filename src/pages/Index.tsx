@@ -27,6 +27,7 @@ import { ReceitasFitnessModal } from "@/components/ReceitasFitnessModal";
 import { InstallAppModal } from "@/components/InstallAppModal";
 import { useToast } from "@/hooks/use-toast";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
+import { useNotifications } from "@/hooks/useNotifications";
 import { recipes, getPopularRecipes } from "@/data/recipes";
 
 interface Sale {
@@ -48,6 +49,7 @@ const Index = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { toast } = useToast();
+  const { notifyAppInstalled } = useNotifications();
   const [calculadoraOpen, setCalculadoraOpen] = useState(false);
   const [vendasOpen, setVendasOpen] = useState(false);
   const [formasVendaOpen, setFormasVendaOpen] = useState(false);
@@ -76,8 +78,22 @@ const Index = () => {
     if (user) {
       fetchUserData();
       checkOnboarding();
+      checkPWAInstallation();
     }
   }, [user]);
+
+  // Check if app was just installed and create notification
+  const checkPWAInstallation = async () => {
+    const justInstalled = localStorage.getItem('pwa-just-installed');
+    if (justInstalled === 'true' && user) {
+      localStorage.removeItem('pwa-just-installed');
+      await notifyAppInstalled();
+      toast({
+        title: "🎉 App Instalado!",
+        description: "Agora você pode acessar pela tela inicial.",
+      });
+    }
+  };
 
   const checkOnboarding = () => {
     const hasCompletedOnboarding = localStorage.getItem(`onboarding_${user?.id}`);
