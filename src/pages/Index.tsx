@@ -4,7 +4,7 @@ import {
   BookOpen, Calculator, Store, Lightbulb, 
   Heart, Users, Download, Sparkles, Flame, Play,
   ChefHat, Trophy, BarChart3, Star, Zap, TrendingUp, Share2, Rocket,
-  GraduationCap
+  GraduationCap, Package
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -24,6 +24,7 @@ import { KitVendaModal } from "@/components/KitVendaModal";
 import { PrimeiraVendaModal } from "@/components/PrimeiraVendaModal";
 import { ErrosComunsModal } from "@/components/ErrosComunsModal";
 import { ReceitasFitnessModal } from "@/components/ReceitasFitnessModal";
+import EmbalagemModal from "@/components/EmbalagemModal";
 import { InstallAppModal } from "@/components/InstallAppModal";
 import { useToast } from "@/hooks/use-toast";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
@@ -62,6 +63,7 @@ const Index = () => {
   const [errosComunsOpen, setErrosComunsOpen] = useState(false);
   const [receitasFitnessOpen, setReceitasFitnessOpen] = useState(false);
   const [installAppOpen, setInstallAppOpen] = useState(false);
+  const [embalagemOpen, setEmbalagemOpen] = useState(false);
   const pwa = usePWAInstall();
   const [sales, setSales] = useState<Sale[]>([]);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -518,6 +520,15 @@ const Index = () => {
               onClick={() => setErrosComunsOpen(true)}
             />
           </div>
+          <div className="animate-fade-in" style={{ animationDelay: '850ms' }}>
+            <FeatureCard
+              title="Guia Embalagens"
+              description="Do saquinho ao delivery"
+              icon={Package}
+              iconColor="gold"
+              onClick={() => setEmbalagemOpen(true)}
+            />
+          </div>
         </div>
 
         {/* Banner de Instalação Premium */}
@@ -618,6 +629,10 @@ const Index = () => {
       <InstallAppModal
         open={installAppOpen}
         onOpenChange={setInstallAppOpen}
+      />
+      <EmbalagemModal
+        open={embalagemOpen}
+        onOpenChange={setEmbalagemOpen}
       />
     </div>
   );
