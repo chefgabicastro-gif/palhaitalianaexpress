@@ -489,7 +489,7 @@ const Index = () => {
               description="7 versões saudáveis"
               icon={Heart}
               iconColor="green"
-              onClick={() => setReceitasFitnessOpen(true)}
+              onClick={() => navigate('/modulos')}
             />
           </div>
           <div className="animate-fade-in" style={{ animationDelay: '700ms' }}>
