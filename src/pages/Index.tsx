@@ -22,6 +22,8 @@ import { DesafioSemanaCard } from "@/components/DesafioSemanaCard";
 import { SimuladorLucroModal } from "@/components/SimuladorLucroModal";
 import { KitVendaModal } from "@/components/KitVendaModal";
 import { PrimeiraVendaModal } from "@/components/PrimeiraVendaModal";
+import { ErrosComunsModal } from "@/components/ErrosComunsModal";
+import { ReceitasFitnessModal } from "@/components/ReceitasFitnessModal";
 import { useToast } from "@/hooks/use-toast";
 import { recipes, getPopularRecipes } from "@/data/recipes";
 
@@ -53,6 +55,8 @@ const Index = () => {
   const [simuladorOpen, setSimuladorOpen] = useState(false);
   const [kitVendaOpen, setKitVendaOpen] = useState(false);
   const [primeiraVendaOpen, setPrimeiraVendaOpen] = useState(false);
+  const [errosComunsOpen, setErrosComunsOpen] = useState(false);
+  const [receitasFitnessOpen, setReceitasFitnessOpen] = useState(false);
   const [sales, setSales] = useState<Sale[]>([]);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [modulesProgress, setModulesProgress] = useState(0);
@@ -462,9 +466,10 @@ const Index = () => {
           <div className="animate-fade-in" style={{ animationDelay: '650ms' }}>
             <FeatureCard
               title="Receitas Fitness"
-              description="Versões saudáveis"
+              description="7 versões saudáveis"
               icon={Heart}
               iconColor="green"
+              onClick={() => setReceitasFitnessOpen(true)}
             />
           </div>
           <div className="animate-fade-in" style={{ animationDelay: '700ms' }}>
@@ -487,9 +492,10 @@ const Index = () => {
           <div className="animate-fade-in" style={{ animationDelay: '800ms' }}>
             <FeatureCard
               title="Erros Comuns"
-              description="Evite prejuízos"
+              description="10 erros fatais"
               icon={Lightbulb}
               iconColor="orange"
+              onClick={() => setErrosComunsOpen(true)}
             />
           </div>
         </div>
@@ -558,6 +564,14 @@ const Index = () => {
       <PrimeiraVendaModal
         isOpen={primeiraVendaOpen}
         onClose={() => setPrimeiraVendaOpen(false)}
+      />
+      <ErrosComunsModal
+        open={errosComunsOpen}
+        onOpenChange={setErrosComunsOpen}
+      />
+      <ReceitasFitnessModal
+        open={receitasFitnessOpen}
+        onOpenChange={setReceitasFitnessOpen}
       />
     </div>
   );
