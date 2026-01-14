@@ -16,7 +16,7 @@ import { CalculadoraModal } from "@/components/CalculadoraModal";
 import { VendasModal } from "@/components/VendasModal";
 import { FormasVendaModal } from "@/components/FormasVendaModal";
 import { DicasModal } from "@/components/DicasModal";
-import { OnboardingModal } from "@/components/OnboardingModal";
+
 import { RecipeDetailModal } from "@/components/RecipeDetailModal";
 import { DesafioSemanaCard } from "@/components/DesafioSemanaCard";
 import { SimuladorLucroModal } from "@/components/SimuladorLucroModal";
@@ -55,7 +55,7 @@ const Index = () => {
   const [vendasOpen, setVendasOpen] = useState(false);
   const [formasVendaOpen, setFormasVendaOpen] = useState(false);
   const [dicasOpen, setDicasOpen] = useState(false);
-  const [showOnboarding, setShowOnboarding] = useState(false);
+  
   const [receitaDiaOpen, setReceitaDiaOpen] = useState(false);
   const [simuladorOpen, setSimuladorOpen] = useState(false);
   const [kitVendaOpen, setKitVendaOpen] = useState(false);
@@ -79,7 +79,6 @@ const Index = () => {
   useEffect(() => {
     if (user) {
       fetchUserData();
-      checkOnboarding();
       checkPWAInstallation();
     }
   }, [user]);
@@ -97,45 +96,6 @@ const Index = () => {
     }
   };
 
-  const checkOnboarding = () => {
-    const hasCompletedOnboarding = localStorage.getItem(`onboarding_${user?.id}`);
-    if (!hasCompletedOnboarding) {
-      setTimeout(() => setShowOnboarding(true), 500);
-    }
-  };
-
-  const handleOnboardingComplete = async () => {
-    setShowOnboarding(false);
-    localStorage.setItem(`onboarding_${user?.id}`, 'true');
-    
-    if (user) {
-      const { data: currentProfile } = await supabase
-        .from('profiles')
-        .select('xp')
-        .eq('user_id', user.id)
-        .maybeSingle();
-      
-      const newXp = (currentProfile?.xp || 0) + 100;
-      await supabase
-        .from('profiles')
-        .update({ xp: newXp })
-        .eq('user_id', user.id);
-
-      await supabase.from('notifications').insert({
-        user_id: user.id,
-        title: '🎉 Bem-vindo(a)!',
-        message: 'Você ganhou +100 XP de bônus por completar o onboarding!',
-        type: 'success'
-      });
-
-      toast({
-        title: '🎉 +100 XP de Bônus!',
-        description: 'Parabéns por completar o onboarding!',
-      });
-
-      fetchUserData();
-    }
-  };
 
   const fetchUserData = async () => {
     if (!user) return;
@@ -593,11 +553,6 @@ const Index = () => {
       <DicasModal 
         isOpen={dicasOpen} 
         onClose={() => setDicasOpen(false)} 
-      />
-      <OnboardingModal
-        isOpen={showOnboarding}
-        onComplete={handleOnboardingComplete}
-        userName={profile?.name || "Chef"}
       />
       {receitaDoDia && (
         <RecipeDetailModal
