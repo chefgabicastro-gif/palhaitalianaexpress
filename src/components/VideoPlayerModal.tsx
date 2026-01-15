@@ -76,7 +76,7 @@ export function VideoPlayerModal({
               </div>
             </div>
 
-            {/* Video Player Container - Protected */}
+            {/* Video Player Container */}
             <div className="relative w-full aspect-video bg-black">
               {!isPlaying ? (
                 /* Thumbnail with Play Button */
@@ -85,7 +85,7 @@ export function VideoPlayerModal({
                   onClick={() => setIsPlaying(true)}
                 >
                   <img 
-                    src={getYoutubeThumbnail(lesson.youtubeId, 'maxres')}
+                    src={lesson.thumbnail}
                     alt={lesson.title}
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -97,7 +97,7 @@ export function VideoPlayerModal({
                   {/* Play Button */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <motion.div 
-                      className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl shadow-primary/50"
+                      className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl shadow-primary/50 cursor-pointer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -118,21 +118,15 @@ export function VideoPlayerModal({
                   </div>
                 </div>
               ) : (
-                /* Protected YouTube Player */
-                <div className="relative w-full h-full">
-                  {/* Cloak Layer - Blocks YouTube Logo clicks */}
-                  <div className="absolute top-0 left-0 right-0 h-16 z-10 pointer-events-auto" />
-                  <div className="absolute bottom-0 left-0 right-0 h-14 z-10 pointer-events-auto" />
-                  <div className="absolute top-0 right-0 w-20 h-20 z-10 pointer-events-auto" />
-                  
-                  <iframe
-                    src={`https://www.youtube.com/embed/${lesson.youtubeId}?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1&disablekb=0&fs=0&iv_load_policy=3&playsinline=1`}
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen={false}
-                    title={lesson.title}
-                  />
-                </div>
+                /* YouTube Player - Full functionality */
+                <iframe
+                  src={`https://www.youtube.com/embed/${lesson.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowFullScreen
+                  title={lesson.title}
+                  style={{ border: 'none' }}
+                />
               )}
             </div>
 
