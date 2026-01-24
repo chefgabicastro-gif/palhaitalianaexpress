@@ -4,6 +4,9 @@ import aula03Thumb from '@/assets/thumbnails/aula-03.jpg';
 import aula04Thumb from '@/assets/thumbnails/aula-04.jpg';
 import aula05Thumb from '@/assets/thumbnails/aula-05.jpg';
 import aula06Thumb from '@/assets/thumbnails/aula-06.jpg';
+import aula07Thumb from '@/assets/thumbnails/aula-07.jpg';
+import aula08Thumb from '@/assets/thumbnails/aula-08.jpg';
+import aula09Thumb from '@/assets/thumbnails/aula-09.jpg';
 import aulaBonus01Thumb from '@/assets/thumbnails/aula-bonus-01.jpg';
 import aulaBonus02Thumb from '@/assets/thumbnails/aula-bonus-02.jpg';
 
@@ -81,6 +84,36 @@ export const videoLessons: VideoLesson[] = [
     order: 6
   },
   {
+    id: 'aula-07',
+    title: 'Palha Italiana - Ninho e Oreo',
+    description: 'Receita especial do Igor Rocha! Cremosa e irresistível!',
+    youtubeId: 'dVJNe3UXKHo',
+    thumbnail: aula07Thumb,
+    duration: '15 min',
+    xpReward: 75,
+    order: 7
+  },
+  {
+    id: 'aula-08',
+    title: 'Palha Italiana de Ninho com Oreo da Propaganda',
+    description: 'A famosa receita que viralizou! Aprenda o segredo!',
+    youtubeId: 's-Wrc1DiTrc',
+    thumbnail: aula08Thumb,
+    duration: '18 min',
+    xpReward: 100,
+    order: 8
+  },
+  {
+    id: 'aula-09',
+    title: 'Da Receitas a Renda com Palha Italiana',
+    description: 'Transforme suas receitas em um negócio lucrativo!',
+    youtubeId: 'xJ209cRsQbc',
+    thumbnail: aula09Thumb,
+    duration: '25 min',
+    xpReward: 150,
+    order: 9
+  },
+  {
     id: 'aula-bonus-01',
     title: 'Sucesso de Vendas - Cones Recheados',
     description: 'Fácil de fazer, prático e muito lucrativo!',
@@ -89,7 +122,7 @@ export const videoLessons: VideoLesson[] = [
     duration: '15 min',
     xpReward: 125,
     isBonus: true,
-    order: 7
+    order: 10
   },
   {
     id: 'aula-bonus-02',
@@ -100,7 +133,7 @@ export const videoLessons: VideoLesson[] = [
     duration: '22 min',
     xpReward: 150,
     isBonus: true,
-    order: 8
+    order: 11
   }
 ];
 
