@@ -4,7 +4,7 @@ import {
   BookOpen, Calculator, Store, Lightbulb, 
   Heart, Users, Download, Sparkles, Flame, Play,
   ChefHat, Trophy, BarChart3, Star, Zap, TrendingUp, Share2, Rocket,
-  GraduationCap, Package
+  GraduationCap, Package, FileImage
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -26,6 +26,7 @@ import { ErrosComunsModal } from "@/components/ErrosComunsModal";
 import { ReceitasFitnessModal } from "@/components/ReceitasFitnessModal";
 import EmbalagemModal from "@/components/EmbalagemModal";
 import { InstallAppModal } from "@/components/InstallAppModal";
+import { CardapioDigitalModal } from "@/components/CardapioDigitalModal";
 import { useToast } from "@/hooks/use-toast";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { useNotifications } from "@/hooks/useNotifications";
@@ -64,6 +65,7 @@ const Index = () => {
   const [receitasFitnessOpen, setReceitasFitnessOpen] = useState(false);
   const [installAppOpen, setInstallAppOpen] = useState(false);
   const [embalagemOpen, setEmbalagemOpen] = useState(false);
+  const [cardapioOpen, setCardapioOpen] = useState(false);
   const pwa = usePWAInstall();
   const [sales, setSales] = useState<Sale[]>([]);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -489,6 +491,15 @@ const Index = () => {
               onClick={() => setEmbalagemOpen(true)}
             />
           </div>
+          <div className="animate-fade-in" style={{ animationDelay: '900ms' }}>
+            <FeatureCard
+              title="Cardápio Digital"
+              description="Crie seu cardápio pro"
+              icon={FileImage}
+              iconColor="magenta"
+              onClick={() => setCardapioOpen(true)}
+            />
+          </div>
         </div>
 
         {/* Banner de Instalação Premium */}
@@ -588,6 +599,10 @@ const Index = () => {
       <EmbalagemModal
         open={embalagemOpen}
         onOpenChange={setEmbalagemOpen}
+      />
+      <CardapioDigitalModal
+        open={cardapioOpen}
+        onOpenChange={setCardapioOpen}
       />
     </div>
   );
