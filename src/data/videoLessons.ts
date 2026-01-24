@@ -85,7 +85,7 @@ export const videoLessons: VideoLesson[] = [
   },
   {
     id: 'aula-07',
-    title: 'Palha Italiana - Ninho e Oreo',
+    title: 'Palha Italiana - Ninho e Oreo - Método Igor Rocha',
     description: 'Receita especial do Igor Rocha! Cremosa e irresistível!',
     youtubeId: 'dVJNe3UXKHo',
     thumbnail: aula07Thumb,
