@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   ArrowLeft, Play, CheckCircle, Clock, Star, 
-  Crown, Sparkles, Trophy, Lock, Flame, GraduationCap
+  Crown, Sparkles, Trophy, Lock, Flame, GraduationCap,
+  TrendingUp, Quote
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
@@ -88,8 +89,12 @@ export default function Aulas() {
     });
   };
 
-  const regularLessons = videoLessons.filter(l => !l.isBonus).sort((a, b) => a.order - b.order);
+  // Aulas principais (7-9) - nosso conteúdo
+  const regularLessons = videoLessons.filter(l => !l.isBonus && l.order >= 7).sort((a, b) => a.order - b.order);
+  // Aulas bônus
   const bonusLessons = videoLessons.filter(l => l.isBonus).sort((a, b) => a.order - b.order);
+  // Referências (1-6) - conteúdo da Anelyse para inspiração
+  const referenceLessons = videoLessons.filter(l => !l.isBonus && l.order <= 6).sort((a, b) => a.order - b.order);
 
   const totalLessons = videoLessons.length;
   const totalCompleted = completedLessons.size;
@@ -338,6 +343,110 @@ export default function Aulas() {
                   {/* Content */}
                   <div className="p-4 bg-gradient-to-r from-card via-card to-gold/5 border-t border-gold/20">
                     <h3 className="font-heading font-bold text-foreground mb-1 line-clamp-1 group-hover:text-gold transition-colors">
+                      {lesson.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      {lesson.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Referências que vendem - Seção Inspiracional */}
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-magenta/30 to-accent/20 flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 text-magenta" />
+            </div>
+            <div>
+              <h2 className="font-heading text-xl font-bold text-foreground">Referências que vendem</h2>
+              <p className="text-sm text-muted-foreground">{referenceLessons.length} conteúdos inspiracionais</p>
+            </div>
+          </div>
+
+          {/* Texto inspiracional */}
+          <div className="p-4 rounded-xl bg-gradient-to-r from-muted/50 to-muted/30 border border-border/50 mb-5">
+            <div className="flex gap-3">
+              <Quote className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Aqui você encontra conteúdos reais de quem está no mercado, produz, vende e cresce todos os anos — mesmo recebendo críticas, opiniões e julgamentos. Use como inspiração, aprendizado e referência de que é possível dar certo.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {referenceLessons.map((lesson, index) => {
+              const isCompleted = completedLessons.has(lesson.id);
+              
+              return (
+                <motion.div
+                  key={lesson.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.08 }}
+                  className={`group cursor-pointer rounded-2xl overflow-hidden transition-all duration-300 ${
+                    isCompleted 
+                      ? 'ring-2 ring-success/50' 
+                      : 'hover:ring-2 hover:ring-magenta/40'
+                  }`}
+                  onClick={() => setSelectedLesson(lesson)}
+                >
+                  {/* Thumbnail */}
+                  <div className="relative aspect-video overflow-hidden">
+                    <img 
+                      src={lesson.thumbnail}
+                      alt={lesson.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className={`absolute inset-0 transition-colors ${
+                      isCompleted ? 'bg-success/30' : 'bg-black/30 group-hover:bg-black/20'
+                    }`} />
+                    
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      {isCompleted ? (
+                        <div className="w-14 h-14 rounded-full bg-success/90 flex items-center justify-center">
+                          <CheckCircle className="w-7 h-7 text-white" />
+                        </div>
+                      ) : (
+                        <motion.div 
+                          className="w-14 h-14 rounded-full bg-magenta/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                          whileHover={{ scale: 1.1 }}
+                        >
+                          <Play className="w-7 h-7 text-white ml-1" fill="white" />
+                        </motion.div>
+                      )}
+                    </div>
+
+                    {/* Badges */}
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2.5 py-1 rounded-lg bg-magenta/80 backdrop-blur-sm text-white text-xs font-bold flex items-center gap-1">
+                        <TrendingUp className="w-3 h-3" />
+                        Referência
+                      </span>
+                    </div>
+                    
+                    <div className="absolute top-3 right-3 flex items-center gap-2">
+                      <span className="px-2.5 py-1 rounded-lg bg-primary/80 backdrop-blur-sm text-white text-xs font-bold flex items-center gap-1">
+                        <Star className="w-3 h-3" />
+                        +{lesson.xpReward} XP
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-3 right-3">
+                      <span className="px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-sm text-white text-xs flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {lesson.duration}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-4 bg-card border-t border-border/50">
+                    <h3 className="font-heading font-bold text-foreground mb-1 line-clamp-1 group-hover:text-magenta transition-colors">
                       {lesson.title}
                     </h3>
                     <p className="text-sm text-muted-foreground line-clamp-2">
