@@ -9,6 +9,8 @@ import aula08Thumb from '@/assets/thumbnails/aula-08.jpg';
 import aula09Thumb from '@/assets/thumbnails/aula-09.jpg';
 import aulaBonus01Thumb from '@/assets/thumbnails/aula-bonus-01.jpg';
 import aulaBonus02Thumb from '@/assets/thumbnails/aula-bonus-02.jpg';
+import aulaMarketing01Thumb from '@/assets/thumbnails/aula-marketing-01.jpg';
+import aulaMarketing02Thumb from '@/assets/thumbnails/aula-marketing-02.jpg';
 
 export interface VideoLesson {
   id: string;
@@ -19,6 +21,8 @@ export interface VideoLesson {
   duration: string;
   xpReward: number;
   isBonus?: boolean;
+  isMarketing?: boolean;
+  author?: string;
   order: number;
 }
 
@@ -134,6 +138,30 @@ export const videoLessons: VideoLesson[] = [
     xpReward: 150,
     isBonus: true,
     order: 11
+  },
+  {
+    id: 'aula-marketing-01',
+    title: 'Como fazer uma tabela de preços poderosa no Canva',
+    description: 'Aprenda a criar tabelas de preços profissionais que vendem!',
+    youtubeId: '9R7SDFiMc2s',
+    thumbnail: aulaMarketing01Thumb,
+    duration: '15 min',
+    xpReward: 100,
+    isMarketing: true,
+    author: 'Tarso Freire',
+    order: 12
+  },
+  {
+    id: 'aula-marketing-02',
+    title: 'Como criar seu logotipo',
+    description: 'Crie uma identidade visual profissional para seu negócio!',
+    youtubeId: 'aJ9GiT_1JKs',
+    thumbnail: aulaMarketing02Thumb,
+    duration: '20 min',
+    xpReward: 100,
+    isMarketing: true,
+    author: 'Tarso Freire',
+    order: 13
   }
 ];
 

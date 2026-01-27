@@ -4,7 +4,7 @@ import {
   BookOpen, Calculator, Store, Lightbulb, 
   Heart, Users, Download, Sparkles, Flame, Play,
   ChefHat, Trophy, BarChart3, Star, Zap, TrendingUp, Share2, Rocket,
-  GraduationCap, Package, FileImage
+  GraduationCap, Package, FileImage, Megaphone, Palette
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -27,10 +27,12 @@ import { ReceitasFitnessModal } from "@/components/ReceitasFitnessModal";
 import EmbalagemModal from "@/components/EmbalagemModal";
 import { InstallAppModal } from "@/components/InstallAppModal";
 import { CardapioDigitalModal } from "@/components/CardapioDigitalModal";
+import { VideoPlayerModal } from "@/components/VideoPlayerModal";
 import { useToast } from "@/hooks/use-toast";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { useNotifications } from "@/hooks/useNotifications";
 import { recipes, getPopularRecipes } from "@/data/recipes";
+import { videoLessons } from "@/data/videoLessons";
 
 interface Sale {
   id: string;
@@ -66,10 +68,18 @@ const Index = () => {
   const [installAppOpen, setInstallAppOpen] = useState(false);
   const [embalagemOpen, setEmbalagemOpen] = useState(false);
   const [cardapioOpen, setCardapioOpen] = useState(false);
+  const [marketingVideoOpen, setMarketingVideoOpen] = useState(false);
+  const [selectedMarketingLesson, setSelectedMarketingLesson] = useState<typeof videoLessons[0] | null>(null);
   const pwa = usePWAInstall();
   const [sales, setSales] = useState<Sale[]>([]);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [modulesProgress, setModulesProgress] = useState(0);
+
+  // Filter marketing lessons
+  const marketingLessons = useMemo(() => 
+    videoLessons.filter(lesson => lesson.isMarketing), 
+    []
+  );
 
   // Random recipe of the day (changes daily)
   const receitaDoDia = useMemo(() => {
@@ -416,7 +426,106 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Desafio da Semana + Cards Secundários */}
+        {/* Seção Muito Além do Doce - Marketing */}
+        <div className="mb-6 animate-fade-in" style={{ animationDelay: '120ms' }}>
+          <div className="relative card-glass p-6 overflow-hidden">
+            {/* Decorative Background */}
+            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-gold/10 to-transparent rounded-full blur-2xl" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-magenta/10 to-transparent rounded-full blur-xl" />
+            
+            <div className="relative z-10">
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold/30 to-magenta/20 flex items-center justify-center">
+                    <Megaphone className="w-6 h-6 text-gold" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-gold/20 text-gold">
+                        Marketing
+                      </span>
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-magenta/20 text-magenta">
+                        Novo
+                      </span>
+                    </div>
+                    <h3 className="font-heading text-xl font-bold text-foreground">
+                      Muito Além do Doce
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-sm text-muted-foreground mb-4 max-w-2xl">
+                Vender é tão importante quanto produzir! Aprenda a criar materiais profissionais que 
+                destacam seu negócio e atraem mais clientes.
+              </p>
+
+              {/* Video Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {marketingLessons.map((lesson, index) => (
+                  <div
+                    key={lesson.id}
+                    className="group relative rounded-xl overflow-hidden cursor-pointer bg-card/50 border border-border/50 hover:border-gold/50 transition-all duration-300"
+                    onClick={() => {
+                      setSelectedMarketingLesson(lesson);
+                      setMarketingVideoOpen(true);
+                    }}
+                  >
+                    {/* Thumbnail */}
+                    <div className="relative aspect-video">
+                      <img 
+                        src={lesson.thumbnail} 
+                        alt={lesson.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      
+                      {/* Play Button */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-14 h-14 rounded-full bg-gold/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-gold/30">
+                          <Play className="w-6 h-6 text-black ml-1" fill="currentColor" />
+                        </div>
+                      </div>
+
+                      {/* Duration Badge */}
+                      <div className="absolute top-3 right-3 px-2 py-1 rounded-md bg-black/70 text-white text-xs font-medium">
+                        {lesson.duration}
+                      </div>
+
+                      {/* Bonus Badge */}
+                      <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-gradient-to-r from-gold to-gold/80 text-black text-[10px] font-bold uppercase flex items-center gap-1">
+                        <Palette className="w-3 h-3" />
+                        Bônus
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-4">
+                      <h4 className="font-heading font-bold text-foreground group-hover:text-gold transition-colors line-clamp-1 mb-1">
+                        {lesson.title}
+                      </h4>
+                      <p className="text-xs text-muted-foreground line-clamp-1 mb-2">
+                        {lesson.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          Por <span className="text-gold font-medium">{lesson.author}</span>
+                        </span>
+                        <span className="text-xs font-bold text-primary flex items-center gap-1">
+                          <Zap className="w-3 h-3" />
+                          +{lesson.xpReward} XP
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="animate-fade-in" style={{ animationDelay: '150ms' }}>
             <DesafioSemanaCard onClick={() => toast({ title: "🔥 Desafio em andamento!", description: "Continue vendendo para desbloquear recompensas!" })} />
@@ -674,6 +783,16 @@ const Index = () => {
       <CardapioDigitalModal
         open={cardapioOpen}
         onOpenChange={setCardapioOpen}
+      />
+      <VideoPlayerModal
+        lesson={selectedMarketingLesson}
+        isOpen={marketingVideoOpen}
+        onClose={() => {
+          setMarketingVideoOpen(false);
+          setSelectedMarketingLesson(null);
+        }}
+        isCompleted={false}
+        onComplete={() => {}}
       />
     </div>
   );
