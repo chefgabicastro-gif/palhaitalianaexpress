@@ -8,6 +8,10 @@ import aula07Thumb from '@/assets/thumbnails/aula-07.jpg';
 import aula08Thumb from '@/assets/thumbnails/aula-08.jpg';
 import aula09Thumb from '@/assets/thumbnails/aula-09.jpg';
 import aula10Thumb from '@/assets/thumbnails/aula-10.jpg';
+import aula11Thumb from '@/assets/thumbnails/aula-11.jpg';
+import aula12Thumb from '@/assets/thumbnails/aula-12.jpg';
+import aula13Thumb from '@/assets/thumbnails/aula-13.jpg';
+import aula14Thumb from '@/assets/thumbnails/aula-14.jpg';
 import aulaBonus01Thumb from '@/assets/thumbnails/aula-bonus-01.jpg';
 import aulaBonus02Thumb from '@/assets/thumbnails/aula-bonus-02.jpg';
 import aulaMarketing01Thumb from '@/assets/thumbnails/aula-marketing-01.jpg';
@@ -143,6 +147,54 @@ export const videoLessons: VideoLesson[] = [
     materialName: 'A Arte da Palha Italiana - Chef Medeiros'
   },
   {
+    id: 'aula-11',
+    title: 'Palha Italiana Maracujá com Oreo',
+    description: 'Uma combinação tropical irresistível! Maracujá e Oreo juntos!',
+    youtubeId: '7rwE0ZzN4yU',
+    thumbnail: aula11Thumb,
+    duration: '14 min',
+    xpReward: 100,
+    order: 11,
+    materialUrl: '/materials/aula-11-material.pdf',
+    materialName: 'Red Fruit Palha - Case Study'
+  },
+  {
+    id: 'aula-12',
+    title: 'Palha Italiana Tradicional',
+    description: 'A clássica receita que todo mundo ama! Aprenda o básico perfeito!',
+    youtubeId: 'v7zAabrUc7U',
+    thumbnail: aula12Thumb,
+    duration: '12 min',
+    xpReward: 75,
+    order: 12,
+    materialUrl: '/materials/aula-12-material.pdf',
+    materialName: 'Palha Italiana Tradicional - Receita Completa'
+  },
+  {
+    id: 'aula-13',
+    title: 'Recheios de Sucesso',
+    description: 'Domine os recheios que mais vendem e aumente seus lucros!',
+    youtubeId: 'FBh5EdSBz9I',
+    thumbnail: aula13Thumb,
+    duration: '18 min',
+    xpReward: 100,
+    order: 13,
+    materialUrl: '/materials/aula-13-material.pdf',
+    materialName: 'Recheios de Sucesso - Guia Completo'
+  },
+  {
+    id: 'aula-14',
+    title: 'Aula Bônus - Cozinha Caseira',
+    description: 'Dicas práticas para montar sua produção em casa com sucesso!',
+    youtubeId: '7DYsCigTino',
+    thumbnail: aula14Thumb,
+    duration: '20 min',
+    xpReward: 125,
+    order: 14,
+    materialUrl: '/materials/aula-14-material.pdf',
+    materialName: 'Cozinha Caseira - Guia Prático'
+  },
+  {
     id: 'aula-bonus-01',
     title: 'Sucesso de Vendas - Cones Recheados',
     description: 'Fácil de fazer, prático e muito lucrativo!',
@@ -151,7 +203,7 @@ export const videoLessons: VideoLesson[] = [
     duration: '15 min',
     xpReward: 125,
     isBonus: true,
-    order: 10
+    order: 15
   },
   {
     id: 'aula-bonus-02',
