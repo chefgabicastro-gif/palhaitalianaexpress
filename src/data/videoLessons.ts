@@ -2,6 +2,9 @@ import aula01Thumb from '@/assets/thumbnails/aula-01.jpg';
 import aula02Thumb from '@/assets/thumbnails/aula-02.jpg';
 import aula03Thumb from '@/assets/thumbnails/aula-03.jpg';
 import aula04Thumb from '@/assets/thumbnails/aula-04.jpg';
+import aula05Thumb from '@/assets/thumbnails/aula-05.jpg';
+import aula06Thumb from '@/assets/thumbnails/aula-06.jpg';
+import aula07Thumb from '@/assets/thumbnails/aula-07.jpg';
 import aulaBonus01Thumb from '@/assets/thumbnails/aula-bonus-01.jpg';
 import aulaBonus02Thumb from '@/assets/thumbnails/aula-bonus-02.jpg';
 import aulaMarketing01Thumb from '@/assets/thumbnails/aula-marketing-01.jpg';
@@ -69,6 +72,36 @@ export const videoLessons: VideoLesson[] = [
     order: 4,
     materialUrl: '/materials/aula-04-material.pdf',
     materialName: 'Masterclass - Bombom Ninho Oreo Lucrativo'
+  },
+  {
+    id: 'aula-05',
+    title: 'Palha Italiana - Ninho e Oreo - Igor Rocha',
+    description: 'Aprenda a técnica do Igor Rocha para a clássica Palha de Ninho com Oreo!',
+    youtubeId: 'dVJNe3UXKHo',
+    thumbnail: aula05Thumb,
+    duration: '12 min',
+    xpReward: 75,
+    order: 5
+  },
+  {
+    id: 'aula-06',
+    title: 'Palha Italiana de Ninho com Oreo da Propaganda',
+    description: 'A receita que viralizou nas propagandas! Sucesso garantido!',
+    youtubeId: 's-Wrc1DiTrc',
+    thumbnail: aula06Thumb,
+    duration: '10 min',
+    xpReward: 75,
+    order: 6
+  },
+  {
+    id: 'aula-07',
+    title: 'Da Receita à Renda com Palha Italiana',
+    description: 'Transforme suas receitas em um negócio lucrativo!',
+    youtubeId: 'xJ209cRsQbc',
+    thumbnail: aula07Thumb,
+    duration: '18 min',
+    xpReward: 100,
+    order: 7
   },
   {
     id: 'aula-bonus-01',
