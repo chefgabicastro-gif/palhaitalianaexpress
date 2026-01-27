@@ -77,17 +77,16 @@ export default function Aulas() {
     });
   };
 
-  // Aulas principais (7-9) - nosso conteúdo
-  const regularLessons = videoLessons.filter(l => !l.isBonus && l.order >= 7).sort((a, b) => a.order - b.order);
+  // Aulas principais (sem marketing, sem bônus)
+  const regularLessons = videoLessons.filter(l => !l.isBonus && !l.isMarketing).sort((a, b) => a.order - b.order);
   // Aulas bônus
   const bonusLessons = videoLessons.filter(l => l.isBonus).sort((a, b) => a.order - b.order);
-  // Referências (1-6) - conteúdo da Anelyse para inspiração
-  const referenceLessons = videoLessons.filter(l => !l.isBonus && l.order <= 6).sort((a, b) => a.order - b.order);
-  const totalLessons = videoLessons.length;
-  const totalCompleted = completedLessons.size;
-  const progressPercent = Math.round(totalCompleted / totalLessons * 100);
-  const totalXpAvailable = videoLessons.reduce((acc, l) => acc + l.xpReward, 0);
-  const xpEarned = videoLessons.filter(l => completedLessons.has(l.id)).reduce((acc, l) => acc + l.xpReward, 0);
+  
+  const allLessonsCount = videoLessons.filter(l => !l.isMarketing).length;
+  const totalCompleted = [...completedLessons].filter(id => videoLessons.find(l => l.id === id && !l.isMarketing)).length;
+  const progressPercent = Math.round(totalCompleted / allLessonsCount * 100);
+  const totalXpAvailable = videoLessons.filter(l => !l.isMarketing).reduce((acc, l) => acc + l.xpReward, 0);
+  const xpEarned = videoLessons.filter(l => completedLessons.has(l.id) && !l.isMarketing).reduce((acc, l) => acc + l.xpReward, 0);
   if (loading) {
     return <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="animate-pulse text-primary">Carregando...</div>
@@ -125,7 +124,7 @@ export default function Aulas() {
       }}>
           <div className="grid grid-cols-3 gap-6 mb-4">
             <div className="text-center">
-              <p className="text-2xl md:text-3xl font-bold gradient-text-gold">{totalCompleted}/{totalLessons}</p>
+              <p className="text-2xl md:text-3xl font-bold gradient-text-gold">{totalCompleted}/{allLessonsCount}</p>
               <p className="text-xs text-muted-foreground">Aulas</p>
             </div>
             <div className="text-center">
@@ -220,14 +219,93 @@ export default function Aulas() {
         </div>
 
         {/* Bonus Lessons */}
-        <div className="mb-8">
-          
+        {bonusLessons.length > 0 && (
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gold/30 to-accent/20 flex items-center justify-center">
+                <Crown className="w-5 h-5 text-gold" />
+              </div>
+              <div>
+                <h2 className="font-heading text-xl font-bold text-foreground">Aulas Bônus</h2>
+                <p className="text-sm text-muted-foreground">{bonusLessons.length} aulas exclusivas</p>
+              </div>
+            </div>
 
-          
-        </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {bonusLessons.map((lesson, index) => {
+                const isCompleted = completedLessons.has(lesson.id);
+                return (
+                  <motion.div
+                    key={lesson.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className={`group cursor-pointer rounded-2xl overflow-hidden transition-all duration-300 ring-2 ring-gold/30 ${isCompleted ? 'ring-success/50' : 'hover:ring-gold/60'}`}
+                    onClick={() => setSelectedLesson(lesson)}
+                  >
+                    {/* Thumbnail */}
+                    <div className="relative aspect-video overflow-hidden">
+                      <img 
+                        src={lesson.thumbnail} 
+                        alt={lesson.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className={`absolute inset-0 transition-colors ${isCompleted ? 'bg-success/30' : 'bg-black/30 group-hover:bg-black/20'}`} />
+                      
+                      {/* Play Button Overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        {isCompleted ? (
+                          <div className="w-14 h-14 rounded-full bg-success/90 flex items-center justify-center">
+                            <CheckCircle className="w-7 h-7 text-white" />
+                          </div>
+                        ) : (
+                          <motion.div 
+                            className="w-14 h-14 rounded-full bg-gold/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                            whileHover={{ scale: 1.1 }}
+                          >
+                            <Play className="w-7 h-7 text-white ml-1" fill="white" />
+                          </motion.div>
+                        )}
+                      </div>
 
-        {/* Referências que vendem - Seção Inspiracional */}
-        
+                      {/* Badges */}
+                      <div className="absolute top-3 left-3">
+                        <span className="px-2.5 py-1 rounded-lg bg-gradient-to-r from-gold/90 to-amber-500/90 text-white text-xs font-bold flex items-center gap-1">
+                          <Crown className="w-3 h-3" />
+                          Bônus
+                        </span>
+                      </div>
+                      
+                      <div className="absolute top-3 right-3 flex items-center gap-2">
+                        <span className="px-2.5 py-1 rounded-lg bg-primary/80 backdrop-blur-sm text-white text-xs font-bold flex items-center gap-1">
+                          <Star className="w-3 h-3" />
+                          +{lesson.xpReward} XP
+                        </span>
+                      </div>
+
+                      <div className="absolute bottom-3 right-3">
+                        <span className="px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-sm text-white text-xs flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {lesson.duration}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-4 bg-card border-t border-gold/20">
+                      <h3 className="font-heading font-bold text-foreground mb-1 line-clamp-1 group-hover:text-gold transition-colors">
+                        {lesson.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {lesson.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Completion Badge */}
         {progressPercent === 100 && <motion.div className="p-6 rounded-2xl bg-gradient-to-r from-gold/20 via-primary/20 to-accent/20 border border-gold/30 text-center" initial={{
