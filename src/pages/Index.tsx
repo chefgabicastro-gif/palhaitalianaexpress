@@ -256,10 +256,81 @@ const Index = () => {
           avatarUrl={profile?.avatar_url || undefined}
         />
 
+        {/* HERO - Vídeo de Boas-Vindas */}
+        <div className="relative mb-6 animate-fade-in">
+          {/* Glow Effect Background */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 via-accent/30 to-gold/30 rounded-3xl blur-xl opacity-60" />
+          
+          <div className="relative card-hero p-6 md:p-8 overflow-hidden">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary/10 to-transparent rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-2xl" />
+            
+            <div className="relative z-10">
+              {/* Header */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold uppercase bg-gradient-to-r from-primary to-accent text-primary-foreground flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3" />
+                      Bem-Vindo(a)!
+                    </span>
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase bg-gold/20 text-gold">
+                      Assista Primeiro
+                    </span>
+                  </div>
+                  <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">
+                    Antes de Começar sua Jornada...
+                  </h2>
+                  <p className="text-muted-foreground mt-1 text-sm md:text-base">
+                    Veja este vídeo especial e descubra como transformar sua vida com Palha Italiana!
+                  </p>
+                </div>
+              </div>
+
+              {/* Video Container */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/20 border-2 border-primary/20">
+                {/* Animated Border */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-accent to-gold rounded-2xl opacity-50 blur-sm animate-pulse" />
+                
+                <div className="relative aspect-video bg-black rounded-2xl overflow-hidden">
+                  <iframe
+                    src="https://www.youtube.com/embed/mYcUFmXdaRU?rel=0&modestbranding=1"
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    allowFullScreen
+                    title="Vídeo de Boas-Vindas"
+                    style={{ border: 'none' }}
+                  />
+                </div>
+              </div>
+
+              {/* Bottom Info */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 pt-4 border-t border-border/50">
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1.5">
+                    <Play className="w-4 h-4 text-primary" />
+                    <span>Vídeo de Apresentação</span>
+                  </div>
+                  <div className="hidden sm:flex items-center gap-1.5">
+                    <Heart className="w-4 h-4 text-magenta" />
+                    <span>Feito com carinho para você</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Flame className="w-4 h-4 text-primary animate-pulse" />
+                  <span className="text-sm font-medium text-foreground">Sua jornada começa agora!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* HERO Card - Receita do Dia */}
         <div 
           className="card-hero p-6 md:p-8 mb-6 cursor-pointer breathe animate-fade-in"
           onClick={() => setReceitaDiaOpen(true)}
+          style={{ animationDelay: '50ms' }}
         >
           <div className="flex flex-col md:flex-row md:items-center gap-6">
             {/* Content */}
