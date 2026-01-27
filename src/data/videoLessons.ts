@@ -2,11 +2,6 @@ import aula01Thumb from '@/assets/thumbnails/aula-01.jpg';
 import aula02Thumb from '@/assets/thumbnails/aula-02.jpg';
 import aula03Thumb from '@/assets/thumbnails/aula-03.jpg';
 import aula04Thumb from '@/assets/thumbnails/aula-04.jpg';
-import aula05Thumb from '@/assets/thumbnails/aula-05.jpg';
-import aula06Thumb from '@/assets/thumbnails/aula-06.jpg';
-import aula07Thumb from '@/assets/thumbnails/aula-07.jpg';
-import aula08Thumb from '@/assets/thumbnails/aula-08.jpg';
-import aula09Thumb from '@/assets/thumbnails/aula-09.jpg';
 import aulaBonus01Thumb from '@/assets/thumbnails/aula-bonus-01.jpg';
 import aulaBonus02Thumb from '@/assets/thumbnails/aula-bonus-02.jpg';
 import aulaMarketing01Thumb from '@/assets/thumbnails/aula-marketing-01.jpg';
@@ -24,98 +19,56 @@ export interface VideoLesson {
   isMarketing?: boolean;
   author?: string;
   order: number;
+  materialUrl?: string;
+  materialName?: string;
 }
 
 export const videoLessons: VideoLesson[] = [
   {
     id: 'aula-01',
-    title: 'Comece a Faturar Agora com Essa Palha Italiana!',
-    description: 'Deliciosa e prática! 1 base, 3 finalizações!',
-    youtubeId: 'gx-FSY9qWQc',
+    title: 'Palha Italiana de Leite Ninho com Oreo',
+    description: 'Aprenda a fazer a famosa Palha Italiana de Ninho com Oreo que vende muito!',
+    youtubeId: 'Jei2xOwyO30',
     thumbnail: aula01Thumb,
     duration: '15 min',
     xpReward: 75,
-    order: 1
+    order: 1,
+    materialUrl: '/materials/aula-01-material.pdf',
+    materialName: 'Guia Completo - Palha Italiana Lucrativa'
   },
   {
     id: 'aula-02',
-    title: 'Palha Italiana de Ninho com Oreo',
-    description: 'A melhor Palha do Mundo! Barata e rápida! Faça e Venda MUITO!',
-    youtubeId: 'eObNXK6W6SY',
+    title: 'Comece a Faturar Agora - 3 Bases em 1',
+    description: 'Uma base, três finalizações diferentes! Comece a faturar hoje mesmo!',
+    youtubeId: 'iYdH_yjYG4k',
     thumbnail: aula02Thumb,
-    duration: '12 min',
-    xpReward: 75,
-    order: 2
+    duration: '18 min',
+    xpReward: 100,
+    order: 2,
+    materialUrl: '/materials/aula-02-material.pdf',
+    materialName: 'Apostila - 3 Bases em 1'
   },
   {
     id: 'aula-03',
-    title: 'Três Sabores de Palha Italiana',
-    description: 'Faça hoje mesmo! Deliciosas e super lucrativas!',
-    youtubeId: 'vQR6lYc0LaA',
+    title: 'Palha Italiana Crocantella',
+    description: 'Crocante por fora, cremosa por dentro! Uma receita irresistível!',
+    youtubeId: '2YoqvSSkrI0',
     thumbnail: aula03Thumb,
-    duration: '18 min',
-    xpReward: 100,
+    duration: '14 min',
+    xpReward: 75,
     order: 3
   },
   {
     id: 'aula-04',
-    title: 'Palha Italiana Crocantella',
-    description: 'Com Oreo e Nutella! Incrível, cremosa e crocante!',
-    youtubeId: '64vy-I0Wgj8',
+    title: 'Palha Italiana Bombom de Ninho com Oreo',
+    description: 'Versão bombom da famosa Palha de Ninho! Perfeita para presentes!',
+    youtubeId: 'kJQX1yQCj2U',
     thumbnail: aula04Thumb,
-    duration: '14 min',
-    xpReward: 75,
-    order: 4
-  },
-  {
-    id: 'aula-05',
-    title: 'Palha Italiana Tradicional e Branca',
-    description: 'Deliciosas receitas com preparo simples!',
-    youtubeId: 'BzsKP4rEXSA',
-    thumbnail: aula05Thumb,
     duration: '16 min',
-    xpReward: 75,
-    order: 5
-  },
-  {
-    id: 'aula-06',
-    title: 'Palha Italiana Recheada',
-    description: 'De Prestígio e Amendoim! A melhor que eu já fiz! Cremosa e deliciosa!',
-    youtubeId: 'XHPp4SWBldk',
-    thumbnail: aula06Thumb,
-    duration: '20 min',
     xpReward: 100,
-    order: 6
-  },
-  {
-    id: 'aula-07',
-    title: 'Palha Italiana - Ninho e Oreo - Método Igor Rocha',
-    description: 'Receita especial do Igor Rocha! Cremosa e irresistível!',
-    youtubeId: 'dVJNe3UXKHo',
-    thumbnail: aula07Thumb,
-    duration: '15 min',
-    xpReward: 75,
-    order: 7
-  },
-  {
-    id: 'aula-08',
-    title: 'Palha Italiana de Ninho com Oreo da Propaganda',
-    description: 'A famosa receita que viralizou! Aprenda o segredo!',
-    youtubeId: 's-Wrc1DiTrc',
-    thumbnail: aula08Thumb,
-    duration: '18 min',
-    xpReward: 100,
-    order: 8
-  },
-  {
-    id: 'aula-09',
-    title: 'Da Receitas a Renda com Palha Italiana',
-    description: 'Transforme suas receitas em um negócio lucrativo!',
-    youtubeId: 'xJ209cRsQbc',
-    thumbnail: aula09Thumb,
-    duration: '25 min',
-    xpReward: 150,
-    order: 9
+    order: 4,
+    materialUrl: '/materials/aula-04-material.pdf',
+    materialName: 'Masterclass - Bombom Ninho Oreo Lucrativo'
   },
   {
     id: 'aula-bonus-01',

@@ -1,6 +1,6 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Play, CheckCircle, Star, Clock, Sparkles, Lock, Crown } from "lucide-react";
+import { X, Play, CheckCircle, Star, Clock, Sparkles, Crown, FileDown, BookOpen } from "lucide-react";
 import { VideoLesson, getYoutubeThumbnail } from "@/data/videoLessons";
 import { useState } from "react";
 
@@ -133,6 +133,53 @@ export function VideoPlayerModal({
             {/* Lesson Info */}
             <div className="p-4 md:p-6 space-y-4">
               <p className="text-muted-foreground">{lesson.description}</p>
+
+              {/* Material Complementar */}
+              {lesson.materialUrl && (
+                <motion.div 
+                  className="p-4 rounded-xl bg-gradient-to-br from-accent/10 via-primary/5 to-gold/10 border border-primary/20"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center">
+                      <BookOpen className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-heading font-bold text-foreground">Material Complementar</h4>
+                      <p className="text-xs text-muted-foreground">Baixe o material de apoio desta aula</p>
+                    </div>
+                  </div>
+                  
+                  <a
+                    href={lesson.materialUrl}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 rounded-xl bg-card/80 border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
+                        <FileDown className="w-5 h-5 text-red-400" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                          {lesson.materialName || 'Material da Aula'}
+                        </p>
+                        <p className="text-xs text-muted-foreground">PDF • Clique para baixar</p>
+                      </div>
+                    </div>
+                    <motion.div 
+                      className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FileDown className="w-5 h-5 text-primary" />
+                    </motion.div>
+                  </a>
+                </motion.div>
+              )}
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3">
