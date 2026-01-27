@@ -5,6 +5,9 @@ import aula04Thumb from '@/assets/thumbnails/aula-04.jpg';
 import aula05Thumb from '@/assets/thumbnails/aula-05.jpg';
 import aula06Thumb from '@/assets/thumbnails/aula-06.jpg';
 import aula07Thumb from '@/assets/thumbnails/aula-07.jpg';
+import aula08Thumb from '@/assets/thumbnails/aula-08.jpg';
+import aula09Thumb from '@/assets/thumbnails/aula-09.jpg';
+import aula10Thumb from '@/assets/thumbnails/aula-10.jpg';
 import aulaBonus01Thumb from '@/assets/thumbnails/aula-bonus-01.jpg';
 import aulaBonus02Thumb from '@/assets/thumbnails/aula-bonus-02.jpg';
 import aulaMarketing01Thumb from '@/assets/thumbnails/aula-marketing-01.jpg';
@@ -102,6 +105,42 @@ export const videoLessons: VideoLesson[] = [
     duration: '18 min',
     xpReward: 100,
     order: 7
+  },
+  {
+    id: 'aula-08',
+    title: 'BomBom Ninho com Oreo',
+    description: 'Aprenda a fazer o irresistível BomBom de Ninho com Oreo!',
+    youtubeId: 'uR_ppRvKfkM',
+    thumbnail: aula08Thumb,
+    duration: '12 min',
+    xpReward: 75,
+    order: 8,
+    materialUrl: '/materials/aula-08-material.pdf',
+    materialName: 'Palha Italiana Gourmet'
+  },
+  {
+    id: 'aula-09',
+    title: 'Palha Italiana 3 Sabores - Churros, Morango e Limão',
+    description: 'Três sabores incríveis em uma só aula! Diversifique suas vendas!',
+    youtubeId: 'YqXn180VFH4',
+    thumbnail: aula09Thumb,
+    duration: '18 min',
+    xpReward: 100,
+    order: 9,
+    materialUrl: '/materials/aula-09-material.pdf',
+    materialName: 'Receitas Virais - Chef Tommy'
+  },
+  {
+    id: 'aula-10',
+    title: 'Palha Italiana para o Mozão',
+    description: 'Receita especial para presentear quem você ama! Perfeita para datas especiais!',
+    youtubeId: 'jz42C0OEdtk',
+    thumbnail: aula10Thumb,
+    duration: '14 min',
+    xpReward: 100,
+    order: 10,
+    materialUrl: '/materials/aula-10-material.pdf',
+    materialName: 'A Arte da Palha Italiana - Chef Medeiros'
   },
   {
     id: 'aula-bonus-01',
