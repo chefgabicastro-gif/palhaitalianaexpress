@@ -221,82 +221,9 @@ export default function Aulas() {
 
         {/* Bonus Lessons */}
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gold/30 to-primary/20 flex items-center justify-center">
-              <Crown className="w-5 h-5 text-gold" />
-            </div>
-            <div>
-              <h2 className="font-heading text-xl font-bold gradient-text-gold">Aulas Bônus</h2>
-              <p className="text-sm text-muted-foreground">Conteúdo exclusivo premium</p>
-            </div>
-          </div>
+          
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {bonusLessons.map((lesson, index) => {
-            const isCompleted = completedLessons.has(lesson.id);
-            return <motion.div key={lesson.id} initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              delay: (regularLessons.length + index) * 0.1
-            }} className={`group cursor-pointer rounded-2xl overflow-hidden transition-all duration-300 ring-2 ring-gold/30 ${isCompleted ? 'ring-success/50' : 'hover:ring-gold/60'}`} onClick={() => setSelectedLesson(lesson)}>
-                  {/* Thumbnail */}
-                  <div className="relative aspect-video overflow-hidden">
-                    <img src={lesson.thumbnail} alt={lesson.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div className={`absolute inset-0 transition-colors ${isCompleted ? 'bg-success/30' : 'bg-black/30 group-hover:bg-black/20'}`} />
-                    
-                    {/* Gold Gradient Border Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-gold/20 via-transparent to-gold/10 pointer-events-none" />
-                    
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      {isCompleted ? <div className="w-14 h-14 rounded-full bg-success/90 flex items-center justify-center">
-                          <CheckCircle className="w-7 h-7 text-white" />
-                        </div> : <motion.div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold to-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg shadow-gold/30" whileHover={{
-                    scale: 1.1
-                  }}>
-                          <Play className="w-7 h-7 text-white ml-1" fill="white" />
-                        </motion.div>}
-                    </div>
-
-                    {/* Badges */}
-                    <div className="absolute top-3 left-3 flex items-center gap-2">
-                      <span className="px-2.5 py-1 rounded-lg bg-gradient-to-r from-gold to-primary text-white text-xs font-bold flex items-center gap-1">
-                        <Crown className="w-3 h-3" />
-                        BÔNUS
-                      </span>
-                    </div>
-                    
-                    <div className="absolute top-3 right-3">
-                      <span className="px-2.5 py-1 rounded-lg bg-gold/80 backdrop-blur-sm text-white text-xs font-bold flex items-center gap-1">
-                        <Star className="w-3 h-3" />
-                        +{lesson.xpReward} XP
-                      </span>
-                    </div>
-
-                    <div className="absolute bottom-3 right-3">
-                      <span className="px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-sm text-white text-xs flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {lesson.duration}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-4 bg-gradient-to-r from-card via-card to-gold/5 border-t border-gold/20">
-                    <h3 className="font-heading font-bold text-foreground mb-1 line-clamp-1 group-hover:text-gold transition-colors">
-                      {lesson.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2">
-                      {lesson.description}
-                    </p>
-                  </div>
-                </motion.div>;
-          })}
-          </div>
+          
         </div>
 
         {/* Referências que vendem - Seção Inspiracional */}
