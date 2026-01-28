@@ -28,6 +28,7 @@ import EmbalagemModal from "@/components/EmbalagemModal";
 import { InstallAppModal } from "@/components/InstallAppModal";
 import { CardapioDigitalModal } from "@/components/CardapioDigitalModal";
 import { VideoPlayerModal } from "@/components/VideoPlayerModal";
+import EbookModal from "@/components/EbookModal";
 import { useToast } from "@/hooks/use-toast";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { useNotifications } from "@/hooks/useNotifications";
@@ -69,6 +70,7 @@ const Index = () => {
   const [embalagemOpen, setEmbalagemOpen] = useState(false);
   const [cardapioOpen, setCardapioOpen] = useState(false);
   const [marketingVideoOpen, setMarketingVideoOpen] = useState(false);
+  const [ebookOpen, setEbookOpen] = useState(false);
   const [selectedMarketingLesson, setSelectedMarketingLesson] = useState<typeof videoLessons[0] | null>(null);
   const pwa = usePWAInstall();
   const [sales, setSales] = useState<Sale[]>([]);
@@ -673,6 +675,15 @@ const Index = () => {
           </div>
           <div className="animate-fade-in" style={{ animationDelay: '900ms' }}>
             <FeatureCard
+              title="E-book Receitas"
+              description="37 receitas em PDF"
+              icon={BookOpen}
+              iconColor="gold"
+              onClick={() => setEbookOpen(true)}
+            />
+          </div>
+          <div className="animate-fade-in" style={{ animationDelay: '950ms' }}>
+            <FeatureCard
               title="Cardápio Digital"
               description="Crie seu cardápio pro"
               icon={FileImage}
@@ -783,6 +794,10 @@ const Index = () => {
       <CardapioDigitalModal
         open={cardapioOpen}
         onOpenChange={setCardapioOpen}
+      />
+      <EbookModal
+        open={ebookOpen}
+        onOpenChange={setEbookOpen}
       />
       <VideoPlayerModal
         lesson={selectedMarketingLesson}
