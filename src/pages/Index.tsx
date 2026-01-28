@@ -338,6 +338,58 @@ const Index = () => {
           </div>
         </div>
 
+        {/* HERO - E-book de Receitas */}
+        <div 
+          className="relative mb-6 animate-fade-in cursor-pointer group"
+          onClick={() => setEbookOpen(true)}
+          style={{ animationDelay: '40ms' }}
+        >
+          {/* Glow Effect */}
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/40 via-gold/40 to-accent/40 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity" />
+          
+          <div className="relative card-glass p-5 md:p-6 overflow-hidden rounded-2xl border border-primary/30 group-hover:border-primary/50 transition-all">
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-primary/10 to-transparent rounded-full blur-2xl" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-gold/10 to-transparent rounded-full blur-xl" />
+            
+            <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4">
+              {/* Icon */}
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/30 to-gold/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <BookOpen className="w-8 h-8 text-primary" />
+              </div>
+              
+              {/* Content */}
+              <div className="flex-1 text-center sm:text-left">
+                <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-primary/20 text-primary">
+                    E-BOOK
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-gold/20 text-gold">
+                    GRÁTIS
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-accent/20 text-accent">
+                    37 RECEITAS
+                  </span>
+                </div>
+                <h3 className="font-heading text-lg md:text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  Baixe Todas as Receitas em PDF
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  E-book profissional para consultar offline ou imprimir
+                </p>
+              </div>
+              
+              {/* CTA */}
+              <div className="flex-shrink-0">
+                <button className="btn-premium flex items-center gap-2 px-5 py-2.5">
+                  <Download className="w-4 h-4" />
+                  Baixar E-book
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* HERO Card - Receita do Dia */}
         <div 
           className="card-hero p-6 md:p-8 mb-6 cursor-pointer breathe animate-fade-in"

@@ -3,8 +3,9 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Recipe } from "@/data/recipes";
-import { Clock, ChefHat, Snowflake, Lightbulb, CheckCircle2, Star } from "lucide-react";
+import { Clock, ChefHat, Snowflake, Lightbulb, CheckCircle2, Star, Download, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useRecipePDF } from "@/hooks/useRecipePDF";
 
 interface RecipeDetailModalProps {
   recipe: Recipe | null;
@@ -21,6 +22,8 @@ export const RecipeDetailModal = ({
   onComplete,
   isCompleted 
 }: RecipeDetailModalProps) => {
+  const { generateRecipePDF, shareOnWhatsApp } = useRecipePDF();
+  
   if (!recipe) return null;
 
   const difficultyColors = {
@@ -41,7 +44,7 @@ export const RecipeDetailModal = ({
         <DialogHeader className="p-6 pb-0">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-2 flex-wrap">
                 <span className="text-2xl">{recipe.categoryEmoji}</span>
                 <Badge className={difficultyColors[recipe.difficulty]}>
                   {difficultyLabels[recipe.difficulty]}
@@ -72,9 +75,31 @@ export const RecipeDetailModal = ({
               {recipe.yield}
             </div>
           </div>
+
+          {/* Share & Download Buttons */}
+          <div className="flex gap-2 mt-4">
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex-1 gap-2"
+              onClick={() => generateRecipePDF(recipe)}
+            >
+              <Download className="w-4 h-4" />
+              Baixar PDF
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex-1 gap-2 text-green-500 border-green-500/50 hover:bg-green-500/10"
+              onClick={() => shareOnWhatsApp(recipe)}
+            >
+              <Share2 className="w-4 h-4" />
+              WhatsApp
+            </Button>
+          </div>
         </DialogHeader>
 
-        <ScrollArea className="max-h-[60vh] px-6">
+        <ScrollArea className="max-h-[55vh] px-6">
           {/* Ingredientes */}
           <div className="py-4">
             <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
