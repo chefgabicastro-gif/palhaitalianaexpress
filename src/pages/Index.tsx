@@ -4,7 +4,7 @@ import {
   BookOpen, Calculator, Store, Lightbulb, 
   Heart, Users, Download, Sparkles, Flame, Play,
   ChefHat, Trophy, BarChart3, Star, Zap, TrendingUp, Share2, Rocket,
-  GraduationCap, Package, FileImage, Megaphone, Palette
+  GraduationCap, Package, FileImage, Megaphone, Palette, MessageCircle
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -389,6 +389,57 @@ const Index = () => {
             </div>
           </div>
         </div>
+
+        {/* HERO - Grupo do WhatsApp */}
+        <a 
+          href="https://chat.whatsapp.com/FNemMSiUlCG5FVWhG4D8PY?mode=gi_t"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative mb-6 animate-fade-in cursor-pointer group block"
+          style={{ animationDelay: '60ms' }}
+        >
+          {/* Glow Effect */}
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-[#25D366]/40 via-[#128C7E]/40 to-[#25D366]/40 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity" />
+          
+          <div className="relative card-glass p-5 md:p-6 overflow-hidden rounded-2xl border border-[#25D366]/30 group-hover:border-[#25D366]/50 transition-all">
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-[#25D366]/10 to-transparent rounded-full blur-2xl" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-[#128C7E]/10 to-transparent rounded-full blur-xl" />
+            
+            <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4">
+              {/* Icon */}
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#25D366]/30 to-[#128C7E]/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <MessageCircle className="w-8 h-8 text-[#25D366]" />
+              </div>
+              
+              {/* Content */}
+              <div className="flex-1 text-center sm:text-left">
+                <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#25D366]/20 text-[#25D366]">
+                    COMUNIDADE
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-gold/20 text-gold">
+                    EXCLUSIVO
+                  </span>
+                </div>
+                <h3 className="font-heading text-lg md:text-xl font-bold text-foreground group-hover:text-[#25D366] transition-colors">
+                  Entre no Grupo de Receitas
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Troque experiências e receba dicas exclusivas no WhatsApp
+                </p>
+              </div>
+              
+              {/* CTA */}
+              <div className="flex-shrink-0">
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-white bg-gradient-to-r from-[#25D366] to-[#128C7E] shadow-lg shadow-[#25D366]/30 group-hover:shadow-xl group-hover:shadow-[#25D366]/40 transition-all">
+                  <MessageCircle className="w-4 h-4" />
+                  Entrar no Grupo
+                </span>
+              </div>
+            </div>
+          </div>
+        </a>
 
         {/* HERO Card - Receita do Dia */}
         <div 
