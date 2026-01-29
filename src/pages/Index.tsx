@@ -4,8 +4,10 @@ import {
   BookOpen, Calculator, Store, Lightbulb, 
   Heart, Users, Download, Sparkles, Flame, Play,
   ChefHat, Trophy, BarChart3, Star, Zap, TrendingUp, Share2, Rocket,
-  GraduationCap, Package, FileImage, Megaphone, Palette, MessageCircle
+  GraduationCap, Package, FileImage, Megaphone, Palette, MessageCircle, FileText
 } from "lucide-react";
+import thumbPalhaTradicional from "@/assets/thumbnails/aula-palha-tradicional.jpg";
+import thumbPalhaNinho from "@/assets/thumbnails/aula-palha-ninho.jpg";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { UserHeader } from "@/components/UserHeader";
@@ -29,6 +31,7 @@ import { InstallAppModal } from "@/components/InstallAppModal";
 import { CardapioDigitalModal } from "@/components/CardapioDigitalModal";
 import { VideoPlayerModal } from "@/components/VideoPlayerModal";
 import EbookModal from "@/components/EbookModal";
+import { FeaturedLessonModal } from "@/components/FeaturedLessonModal";
 import { useToast } from "@/hooks/use-toast";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { useNotifications } from "@/hooks/useNotifications";
@@ -72,6 +75,34 @@ const Index = () => {
   const [marketingVideoOpen, setMarketingVideoOpen] = useState(false);
   const [ebookOpen, setEbookOpen] = useState(false);
   const [selectedMarketingLesson, setSelectedMarketingLesson] = useState<typeof videoLessons[0] | null>(null);
+  const [selectedFeaturedLesson, setSelectedFeaturedLesson] = useState<{id: string; title: string; videoUrl: string; materialUrl: string} | null>(null);
+  const [featuredVideoOpen, setFeaturedVideoOpen] = useState(false);
+
+  // Featured lessons data
+  const featuredLessons = [
+    {
+      id: 'palha-tradicional',
+      title: 'Palha Italiana Tradicional',
+      description: 'A receita clássica que conquistou o Brasil',
+      videoUrl: 'https://www.youtube.com/embed/COIxbvPzccM',
+      thumbnail: thumbPalhaTradicional,
+      materialUrl: '/materials/palha-tradicional-material.pdf',
+      duration: '12:30',
+      xp: 100,
+      badge: 'Mais Popular'
+    },
+    {
+      id: 'palha-ninho',
+      title: 'Palha Italiana Leite Ninho',
+      description: 'A versão cremosa que derrete na boca',
+      videoUrl: 'https://www.youtube.com/embed/GdYyEnoG0Fc',
+      thumbnail: thumbPalhaNinho,
+      materialUrl: '/materials/palha-ninho-material.pdf',
+      duration: '10:45',
+      xp: 100,
+      badge: 'Favorita'
+    }
+  ];
   const pwa = usePWAInstall();
   const [sales, setSales] = useState<Sale[]>([]);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -333,6 +364,113 @@ const Index = () => {
                   <Flame className="w-4 h-4 text-primary animate-pulse" />
                   <span className="text-sm font-medium text-foreground">Sua jornada começa agora!</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* SEÇÃO - Aulas Principais em Destaque */}
+        <div className="mb-6 animate-fade-in" style={{ animationDelay: '30ms' }}>
+          <div className="relative card-glass p-6 overflow-hidden">
+            {/* Decorative Background */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary/15 to-transparent rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-2xl" />
+            
+            <div className="relative z-10">
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center">
+                    <ChefHat className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-primary/20 text-primary">
+                        Essenciais
+                      </span>
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-gold/20 text-gold">
+                        Comece Aqui
+                      </span>
+                    </div>
+                    <h3 className="font-heading text-xl font-bold text-foreground">
+                      Aulas Principais
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-sm text-muted-foreground mb-5 max-w-2xl">
+                Domine as duas receitas fundamentais que são a base de todo negócio de Palha Italiana de sucesso!
+              </p>
+
+              {/* Video Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {featuredLessons.map((lesson) => (
+                  <div
+                    key={lesson.id}
+                    className="group relative rounded-2xl overflow-hidden cursor-pointer bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/10"
+                    onClick={() => {
+                      setSelectedFeaturedLesson({
+                        id: lesson.id,
+                        title: lesson.title,
+                        videoUrl: lesson.videoUrl,
+                        materialUrl: lesson.materialUrl
+                      });
+                      setFeaturedVideoOpen(true);
+                    }}
+                  >
+                    {/* Thumbnail */}
+                    <div className="relative aspect-video">
+                      <img 
+                        src={lesson.thumbnail} 
+                        alt={lesson.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                      
+                      {/* Play Button */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-primary/40">
+                          <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
+                        </div>
+                      </div>
+
+                      {/* Duration Badge */}
+                      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-sm text-white text-xs font-medium">
+                        {lesson.duration}
+                      </div>
+
+                      {/* Badge */}
+                      <div className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-gold/90 text-black text-xs font-bold">
+                        ⭐ {lesson.badge}
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-4">
+                      <h4 className="font-heading text-lg font-bold text-foreground group-hover:text-primary transition-colors mb-1">
+                        {lesson.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        {lesson.description}
+                      </p>
+                      
+                      {/* Footer */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold flex items-center gap-1">
+                            <Zap className="w-3 h-3" />
+                            +{lesson.xp} XP
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <FileText className="w-4 h-4" />
+                          Material Incluso
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -911,6 +1049,14 @@ const Index = () => {
         }}
         isCompleted={false}
         onComplete={() => {}}
+      />
+      <FeaturedLessonModal
+        lesson={selectedFeaturedLesson}
+        isOpen={featuredVideoOpen}
+        onClose={() => {
+          setFeaturedVideoOpen(false);
+          setSelectedFeaturedLesson(null);
+        }}
       />
     </div>
   );
