@@ -1,6 +1,6 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Play, Clock, Sparkles, FileDown, BookOpen, Star, ChefHat } from "lucide-react";
+import { X, Play, Clock, Sparkles, FileDown, BookOpen, Star, ChefHat, Eye } from "lucide-react";
 import { useState } from "react";
 
 interface FeaturedLessonModalProps {
@@ -103,37 +103,52 @@ export function FeaturedLessonModal({
                   </div>
                 </div>
                 
-                <button
-                  onClick={() => {
-                    const link = document.createElement('a');
-                    link.href = window.location.origin + lesson.materialUrl;
-                    link.download = getMaterialName(lesson.title) + '.pdf';
-                    link.target = '_blank';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                  }}
-                  className="flex items-center justify-between p-3 rounded-xl bg-card/80 border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all group w-full text-left"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
-                      <FileDown className="w-5 h-5 text-red-400" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
-                        {getMaterialName(lesson.title)}
-                      </p>
-                      <p className="text-xs text-muted-foreground">PDF • Clique para baixar</p>
-                    </div>
-                  </div>
-                  <motion.div 
-                    className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
+                <div className="flex items-center gap-2">
+                  {/* Botão para visualizar */}
+                  <button
+                    onClick={() => {
+                      window.open(window.location.origin + lesson.materialUrl, '_blank');
+                    }}
+                    className="flex-1 flex items-center justify-between p-3 rounded-xl bg-card/80 border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all group text-left"
                   >
-                    <FileDown className="w-5 h-5 text-primary" />
-                  </motion.div>
-                </button>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
+                        <Eye className="w-5 h-5 text-red-400" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                          {getMaterialName(lesson.title)}
+                        </p>
+                        <p className="text-xs text-muted-foreground">PDF • Clique para visualizar</p>
+                      </div>
+                    </div>
+                    <motion.div 
+                      className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Eye className="w-5 h-5 text-primary" />
+                    </motion.div>
+                  </button>
+                  
+                  {/* Botão para baixar */}
+                  <motion.button
+                    onClick={() => {
+                      const link = document.createElement('a');
+                      link.href = window.location.origin + lesson.materialUrl;
+                      link.download = getMaterialName(lesson.title) + '.pdf';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
+                    className="flex-shrink-0 p-3 rounded-xl bg-primary/20 border border-primary/30 hover:bg-primary/30 transition-all flex items-center justify-center"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    title="Baixar PDF"
+                  >
+                    <FileDown className="w-6 h-6 text-primary" />
+                  </motion.button>
+                </div>
               </motion.div>
 
               {/* Tips */}
