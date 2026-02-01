@@ -103,12 +103,17 @@ export function FeaturedLessonModal({
                   </div>
                 </div>
                 
-                <a
-                  href={lesson.materialUrl}
-                  download
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-card/80 border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all group"
+                <button
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = window.location.origin + lesson.materialUrl;
+                    link.download = getMaterialName(lesson.title) + '.pdf';
+                    link.target = '_blank';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
+                  className="flex items-center justify-between p-3 rounded-xl bg-card/80 border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all group w-full text-left"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
@@ -128,7 +133,7 @@ export function FeaturedLessonModal({
                   >
                     <FileDown className="w-5 h-5 text-primary" />
                   </motion.div>
-                </a>
+                </button>
               </motion.div>
 
               {/* Tips */}
