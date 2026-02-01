@@ -5,16 +5,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { Suspense, lazy } from "react";
-
-// Lazy load pages for better performance
-const Index = lazy(() => import("./pages/Index"));
-const Auth = lazy(() => import("./pages/Auth"));
-const Modulos = lazy(() => import("./pages/Modulos"));
-const Conquistas = lazy(() => import("./pages/Conquistas"));
-const Graficos = lazy(() => import("./pages/Graficos"));
-const Aulas = lazy(() => import("./pages/Aulas"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+import Index from "./pages/Index";
+import Auth from "./pages/Auth";
+import Modulos from "./pages/Modulos";
+import Conquistas from "./pages/Conquistas";
+import Graficos from "./pages/Graficos";
+import Aulas from "./pages/Aulas";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,16 +23,6 @@ const queryClient = new QueryClient({
   },
 });
 
-// Loading fallback component
-const PageLoader = () => (
-  <div className="min-h-screen bg-background flex items-center justify-center">
-    <div className="text-center">
-      <div className="w-12 h-12 rounded-full border-4 border-primary border-t-transparent animate-spin mx-auto mb-4" />
-      <p className="text-muted-foreground">Carregando...</p>
-    </div>
-  </div>
-);
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
@@ -43,17 +30,15 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
-              <Route path="/modulos" element={<ProtectedRoute><Modulos /></ProtectedRoute>} />
-              <Route path="/conquistas" element={<ProtectedRoute><Conquistas /></ProtectedRoute>} />
-              <Route path="/graficos" element={<ProtectedRoute><Graficos /></ProtectedRoute>} />
-              <Route path="/aulas" element={<ProtectedRoute><Aulas /></ProtectedRoute>} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
+          <Routes>
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+            <Route path="/modulos" element={<ProtectedRoute><Modulos /></ProtectedRoute>} />
+            <Route path="/conquistas" element={<ProtectedRoute><Conquistas /></ProtectedRoute>} />
+            <Route path="/graficos" element={<ProtectedRoute><Graficos /></ProtectedRoute>} />
+            <Route path="/aulas" element={<ProtectedRoute><Aulas /></ProtectedRoute>} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
