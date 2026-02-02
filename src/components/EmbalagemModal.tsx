@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -157,11 +156,10 @@ const tiposEmbalagem: TipoEmbalagem[] = [
   }
 ];
 
-const EmbalagemModal = forwardRef<HTMLDivElement, EmbalagemModalProps>(
-  ({ open, onOpenChange }, ref) => {
+const EmbalagemModal = ({ open, onOpenChange }: EmbalagemModalProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent ref={ref} className="max-w-2xl max-h-[85vh] p-0 bg-background">
+      <DialogContent className="max-w-2xl max-h-[85vh] p-0 bg-background">
         <DialogHeader className="p-6 pb-4 border-b border-border">
           <DialogTitle className="flex items-center gap-3 text-xl">
             <div className="p-2 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500">
@@ -257,8 +255,6 @@ const EmbalagemModal = forwardRef<HTMLDivElement, EmbalagemModalProps>(
       </DialogContent>
     </Dialog>
   );
-});
-
-EmbalagemModal.displayName = "EmbalagemModal";
+};
 
 export default EmbalagemModal;

@@ -8,7 +8,6 @@ interface ProtectedRouteProps {
 export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { user, loading } = useAuth();
 
-  // Show loading only briefly - max 3 seconds then redirect
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
