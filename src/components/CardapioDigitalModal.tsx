@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, forwardRef } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -73,7 +73,7 @@ const saboresDisponiveis = recipes.slice(0, 20).map(r => ({
   emoji: r.categoryEmoji || "🍫"
 }));
 
-export function CardapioDigitalModal({ open, onOpenChange }: CardapioDigitalModalProps) {
+export const CardapioDigitalModal = forwardRef<HTMLDivElement, CardapioDigitalModalProps>(({ open, onOpenChange }, ref) => {
   const { toast } = useToast();
   const cardapioRef = useRef<HTMLDivElement>(null);
   const [etapa, setEtapa] = useState(1);
@@ -530,4 +530,6 @@ export function CardapioDigitalModal({ open, onOpenChange }: CardapioDigitalModa
       </DialogContent>
     </Dialog>
   );
-}
+});
+
+CardapioDigitalModal.displayName = "CardapioDigitalModal";
