@@ -473,6 +473,92 @@ const Index = () => {
                 ))}
               </div>
             </div>
+        </div>
+        </div>
+
+        {/* SEÇÃO - Apostilas Extras / Material Complementar */}
+        <div className="mb-6 animate-fade-in" style={{ animationDelay: '35ms' }}>
+          <div className="relative card-glass p-6 overflow-hidden">
+            {/* Decorative Background */}
+            <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-gold/15 to-transparent rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-0 w-56 h-56 bg-gradient-to-tl from-primary/10 to-transparent rounded-full blur-2xl" />
+            
+            <div className="relative z-10">
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold/30 to-primary/20 flex items-center justify-center">
+                    <FileText className="w-6 h-6 text-gold" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-gold/20 text-gold">
+                        Exclusivo
+                      </span>
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-primary/20 text-primary flex items-center gap-1">
+                        <Sparkles className="w-3 h-3" />
+                        Novo
+                      </span>
+                    </div>
+                    <h3 className="font-heading text-xl font-bold text-foreground">
+                      📚 Apostilas Extras
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-sm text-muted-foreground mb-5 max-w-2xl">
+                Material complementar exclusivo para você aprofundar seus conhecimentos! Clique para baixar.
+              </p>
+
+              {/* Apostilas Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                {[
+                  { title: 'Palha Tradicional', subtitle: 'Apostila Completa', url: '/materials/palha-tradicional-apostila.pdf', color: 'from-amber-500 to-orange-600', icon: '🍫' },
+                  { title: 'Leite Ninho', subtitle: 'Guia Premium', url: '/materials/palha-leite-ninho-apostila.pdf', color: 'from-yellow-400 to-amber-500', icon: '🥛' },
+                  { title: 'Maracujá', subtitle: 'Guia Completo', url: '/materials/palha-maracuja-guia.pdf', color: 'from-yellow-500 to-orange-500', icon: '🍋' },
+                  { title: 'Limão', subtitle: 'Da Panela ao Lucro', url: '/materials/palha-limao-guia.pdf', color: 'from-lime-400 to-green-500', icon: '🍋‍🟩' },
+                  { title: 'Pistache', subtitle: 'Guia Mestre', url: '/materials/palha-pistache-guia.pdf', color: 'from-green-400 to-emerald-500', icon: '🥜' },
+                  { title: 'Corte & Preço', subtitle: 'Estratégias', url: '/materials/palha-corte-preco.pdf', color: 'from-violet-500 to-purple-600', icon: '✂️' },
+                  { title: 'Pudim Branco', subtitle: 'Técnica de Precisão', url: '/materials/pudim-branco-tecnica.pdf', color: 'from-pink-400 to-rose-500', icon: '🍮' },
+                  { title: 'Pé de Moça', subtitle: 'Chef Edition', url: '/materials/pe-de-moca-chef.pdf', color: 'from-rose-400 to-red-500', icon: '🍬' },
+                  { title: 'Professional', subtitle: 'Mastery Guide', url: '/materials/palha-professional-mastery.pdf', color: 'from-blue-500 to-indigo-600', icon: '👨‍🍳' },
+                  { title: 'Bônus Extra', subtitle: 'Técnicas Avançadas', url: '/materials/palha-corte-preco-2.pdf', color: 'from-indigo-500 to-purple-600', icon: '🎁' },
+                ].map((apostila, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      const link = document.createElement('a');
+                      link.href = window.location.origin + apostila.url;
+                      link.download = apostila.title.replace(/\s+/g, '-').toLowerCase() + '.pdf';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
+                    className="group relative p-4 rounded-xl bg-gradient-to-br from-card/80 to-card/40 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 text-left"
+                  >
+                    {/* Gradient accent */}
+                    <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-xl bg-gradient-to-r ${apostila.color} opacity-80 group-hover:opacity-100`} />
+                    
+                    {/* Icon */}
+                    <div className="text-2xl mb-2">{apostila.icon}</div>
+                    
+                    {/* Title */}
+                    <h4 className="font-heading text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-tight mb-1">
+                      {apostila.title}
+                    </h4>
+                    <p className="text-[10px] text-muted-foreground leading-tight">
+                      {apostila.subtitle}
+                    </p>
+                    
+                    {/* Download indicator */}
+                    <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Download className="w-4 h-4 text-primary" />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
