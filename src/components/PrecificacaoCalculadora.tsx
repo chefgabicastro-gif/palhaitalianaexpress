@@ -107,51 +107,51 @@ export function PrecificacaoCalculadora() {
       {/* Glow Effect Background */}
       <div className="absolute -inset-1 bg-gradient-to-r from-gold/30 via-primary/30 to-magenta/30 rounded-3xl blur-xl opacity-60" />
       
-      <div className="relative card-glass p-6 md:p-8 overflow-hidden">
+      <div className="relative card-glass p-4 sm:p-6 md:p-8 overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-gold/15 to-transparent rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-magenta/10 to-transparent rounded-full blur-2xl" />
         
         <div className="relative z-10">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
-            <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold/30 to-magenta/20 flex items-center justify-center shadow-lg">
-                <Calculator className="w-7 h-7 text-gold" />
+          <div className="flex flex-col gap-3 mb-5 sm:mb-6">
+            <div className="flex items-start sm:items-center gap-3">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gold/30 to-magenta/20 flex items-center justify-center shadow-lg shrink-0">
+                <Calculator className="w-5 h-5 sm:w-7 sm:h-7 text-gold" />
               </div>
-              <div>
-                <div className="flex items-center gap-2 mb-0.5">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-gold/20 text-gold">
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-0.5">
+                  <span className="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase bg-gold/20 text-gold whitespace-nowrap">
                     Ferramenta Pro
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-magenta/20 text-magenta">
-                    Planilha de Precificação
+                  <span className="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase bg-magenta/20 text-magenta whitespace-nowrap">
+                    Planilha
                   </span>
                 </div>
-                <h3 className="font-heading text-xl md:text-2xl font-bold gradient-text-gold">
+                <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold gradient-text-gold leading-tight">
                   Calculadora de Precificação
                 </h3>
               </div>
             </div>
           </div>
 
-          <p className="text-sm text-muted-foreground mb-6 max-w-2xl flex items-start gap-2">
+          <p className="text-xs sm:text-sm text-muted-foreground mb-5 sm:mb-6 max-w-2xl flex items-start gap-2">
             <Info className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-            Preencha os custos de cada componente. O preço de venda é calculado automaticamente com margem de 200% (3x o custo).
+            <span>Preencha os custos de cada componente. O preço de venda é calculado automaticamente com margem de 200% (3x o custo).</span>
           </p>
 
           {/* Resumo Geral */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 xs:grid-cols-3 gap-3 sm:gap-4 mb-5 sm:mb-6">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-gradient-to-br from-muted/50 to-muted/30 rounded-2xl p-4 border border-border/50"
+              className="bg-gradient-to-br from-muted/50 to-muted/30 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-border/50"
             >
-              <div className="flex items-center gap-2 mb-2">
-                <Package className="w-5 h-5 text-magenta" />
-                <span className="text-sm text-muted-foreground">Custo Total</span>
+              <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+                <Package className="w-4 h-4 sm:w-5 sm:h-5 text-magenta" />
+                <span className="text-xs sm:text-sm text-muted-foreground">Custo Total</span>
               </div>
-              <div className="text-2xl md:text-3xl font-bold text-magenta">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-magenta">
                 R$ {totais.totalCusto.toFixed(2)}
               </div>
             </motion.div>
@@ -160,13 +160,13 @@ export function PrecificacaoCalculadora() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="bg-gradient-to-br from-gold/10 to-gold/5 rounded-2xl p-4 border border-gold/30"
+              className="bg-gradient-to-br from-gold/10 to-gold/5 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-gold/30"
             >
-              <div className="flex items-center gap-2 mb-2">
-                <DollarSign className="w-5 h-5 text-gold" />
-                <span className="text-sm text-muted-foreground">Faturamento Total</span>
+              <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+                <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
+                <span className="text-xs sm:text-sm text-muted-foreground">Faturamento</span>
               </div>
-              <div className="text-2xl md:text-3xl font-bold gradient-text-gold">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text-gold">
                 R$ {totais.totalVenda.toFixed(2)}
               </div>
             </motion.div>
@@ -175,24 +175,24 @@ export function PrecificacaoCalculadora() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-gradient-to-br from-success/10 to-success/5 rounded-2xl p-4 border border-success/30"
+              className="bg-gradient-to-br from-success/10 to-success/5 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-success/30"
             >
-              <div className="flex items-center gap-2 mb-2">
-                <TrendingUp className="w-5 h-5 text-success" />
-                <span className="text-sm text-muted-foreground">Lucro Total</span>
+              <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-success" />
+                <span className="text-xs sm:text-sm text-muted-foreground">Lucro Total</span>
               </div>
-              <div className="text-2xl md:text-3xl font-bold text-success">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-success">
                 +R$ {totais.totalLucro.toFixed(2)}
               </div>
             </motion.div>
           </div>
 
           {/* Lista de Produtos */}
-          <div className="space-y-4 mb-6">
+          <div className="space-y-3 sm:space-y-4 mb-5 sm:mb-6">
             <div className="flex items-center gap-2">
-              <Gift className="w-5 h-5 text-primary" />
-              <h4 className="font-heading font-semibold text-foreground">Seus Produtos</h4>
-              <span className="text-xs text-muted-foreground">({produtos.length} itens)</span>
+              <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+              <h4 className="font-heading font-semibold text-foreground text-sm sm:text-base">Seus Produtos</h4>
+              <span className="text-[10px] sm:text-xs text-muted-foreground">({produtos.length} itens)</span>
             </div>
 
             {/* Header da Tabela (Desktop) */}
@@ -218,71 +218,71 @@ export function PrecificacaoCalculadora() {
                   className="bg-card/50 rounded-2xl border border-border/50 overflow-hidden hover:border-primary/30 transition-colors"
                 >
                   {/* Mobile Layout */}
-                  <div className="lg:hidden p-4 space-y-4">
-                    <div className="flex items-start justify-between gap-3">
+                  <div className="lg:hidden p-3 sm:p-4 space-y-3">
+                    <div className="flex items-start justify-between gap-2">
                       <Input
                         value={produto.nome}
                         onChange={(e) => atualizarProduto(produto.id, "nome", e.target.value)}
                         placeholder="Nome do produto"
-                        className="flex-1 h-10 bg-muted/50 border-border/50 rounded-xl font-medium"
+                        className="flex-1 h-9 sm:h-10 bg-muted/50 border-border/50 rounded-lg sm:rounded-xl font-medium text-sm"
                       />
                       <Button
                         variant="ghost"
                         size="icon"
                         onClick={() => removerProduto(produto.id)}
-                        className="shrink-0 text-destructive hover:bg-destructive/10"
+                        className="shrink-0 text-destructive hover:bg-destructive/10 h-9 w-9 sm:h-10 sm:w-10"
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3">
                       <div className="space-y-1">
-                        <Label className="text-xs text-muted-foreground">🍫 Casca (R$)</Label>
+                        <Label className="text-[10px] sm:text-xs text-muted-foreground">🍫 Casca (R$)</Label>
                         <Input
                           type="number"
                           value={produto.casca || ""}
                           onChange={(e) => atualizarProduto(produto.id, "casca", e.target.value)}
-                          className="h-10 bg-muted/50 border-border/50 rounded-xl text-center"
+                          className="h-9 sm:h-10 bg-muted/50 border-border/50 rounded-lg sm:rounded-xl text-center text-sm"
                         />
                       </div>
                       <div className="space-y-1">
-                        <Label className="text-xs text-muted-foreground">🍫 Recheio (R$)</Label>
+                        <Label className="text-[10px] sm:text-xs text-muted-foreground">🍫 Recheio (R$)</Label>
                         <Input
                           type="number"
                           value={produto.recheio || ""}
                           onChange={(e) => atualizarProduto(produto.id, "recheio", e.target.value)}
-                          className="h-10 bg-muted/50 border-border/50 rounded-xl text-center"
+                          className="h-9 sm:h-10 bg-muted/50 border-border/50 rounded-lg sm:rounded-xl text-center text-sm"
                         />
                       </div>
                       <div className="space-y-1">
-                        <Label className="text-xs text-muted-foreground">✨ Adornos (R$)</Label>
+                        <Label className="text-[10px] sm:text-xs text-muted-foreground">✨ Adornos (R$)</Label>
                         <Input
                           type="number"
                           value={produto.adornos || ""}
                           onChange={(e) => atualizarProduto(produto.id, "adornos", e.target.value)}
-                          className="h-10 bg-muted/50 border-border/50 rounded-xl text-center"
+                          className="h-9 sm:h-10 bg-muted/50 border-border/50 rounded-lg sm:rounded-xl text-center text-sm"
                         />
                       </div>
                       <div className="space-y-1">
-                        <Label className="text-xs text-muted-foreground">📦 Embalagem (R$)</Label>
+                        <Label className="text-[10px] sm:text-xs text-muted-foreground">📦 Embalagem (R$)</Label>
                         <Input
                           type="number"
                           value={produto.embalagem || ""}
                           onChange={(e) => atualizarProduto(produto.id, "embalagem", e.target.value)}
-                          className="h-10 bg-muted/50 border-border/50 rounded-xl text-center"
+                          className="h-9 sm:h-10 bg-muted/50 border-border/50 rounded-lg sm:rounded-xl text-center text-sm"
                         />
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between pt-3 border-t border-border/50">
+                    <div className="flex items-center justify-between pt-2.5 sm:pt-3 border-t border-border/50">
                       <div className="text-center">
-                        <span className="text-xs text-muted-foreground block">Custo</span>
-                        <span className="font-bold text-magenta">R$ {calcularCusto(produto).toFixed(2)}</span>
+                        <span className="text-[10px] sm:text-xs text-muted-foreground block">Custo</span>
+                        <span className="font-bold text-sm sm:text-base text-magenta">R$ {calcularCusto(produto).toFixed(2)}</span>
                       </div>
                       <div className="text-center">
-                        <span className="text-xs text-muted-foreground block">Preço de Venda</span>
-                        <span className="font-bold text-xl gradient-text-gold">R$ {calcularPrecoVenda(produto).toFixed(2)}</span>
+                        <span className="text-[10px] sm:text-xs text-muted-foreground block">Preço de Venda</span>
+                        <span className="font-bold text-base sm:text-xl gradient-text-gold">R$ {calcularPrecoVenda(produto).toFixed(2)}</span>
                       </div>
                     </div>
                   </div>
@@ -404,8 +404,9 @@ export function PrecificacaoCalculadora() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                <div className="md:col-span-2 lg:col-span-1">
+              <div className="space-y-4">
+                {/* Nome do Produto - Full width on mobile */}
+                <div>
                   <Label className="text-xs text-muted-foreground mb-1.5 block">Nome do Produto</Label>
                   <Input
                     value={novoProduto.nome}
@@ -414,45 +415,49 @@ export function PrecificacaoCalculadora() {
                     className="h-11 bg-muted/50 border-border/50 rounded-xl"
                   />
                 </div>
-                <div>
-                  <Label className="text-xs text-muted-foreground mb-1.5 block">🍫 Casca (R$)</Label>
-                  <Input
-                    type="number"
-                    value={novoProduto.casca || ""}
-                    onChange={(e) => setNovoProduto({ ...novoProduto, casca: parseFloat(e.target.value) || 0 })}
-                    placeholder="0.00"
-                    className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
-                  />
-                </div>
-                <div>
-                  <Label className="text-xs text-muted-foreground mb-1.5 block">🍫 Recheio (R$)</Label>
-                  <Input
-                    type="number"
-                    value={novoProduto.recheio || ""}
-                    onChange={(e) => setNovoProduto({ ...novoProduto, recheio: parseFloat(e.target.value) || 0 })}
-                    placeholder="0.00"
-                    className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
-                  />
-                </div>
-                <div>
-                  <Label className="text-xs text-muted-foreground mb-1.5 block">✨ Adornos (R$)</Label>
-                  <Input
-                    type="number"
-                    value={novoProduto.adornos || ""}
-                    onChange={(e) => setNovoProduto({ ...novoProduto, adornos: parseFloat(e.target.value) || 0 })}
-                    placeholder="0.00"
-                    className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
-                  />
-                </div>
-                <div>
-                  <Label className="text-xs text-muted-foreground mb-1.5 block">📦 Embalagem (R$)</Label>
-                  <Input
-                    type="number"
-                    value={novoProduto.embalagem || ""}
-                    onChange={(e) => setNovoProduto({ ...novoProduto, embalagem: parseFloat(e.target.value) || 0 })}
-                    placeholder="0.00"
-                    className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
-                  />
+                
+                {/* Cost inputs - 2x2 grid on mobile, 4 columns on desktop */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div>
+                    <Label className="text-xs text-muted-foreground mb-1.5 block">🍫 Casca (R$)</Label>
+                    <Input
+                      type="number"
+                      value={novoProduto.casca || ""}
+                      onChange={(e) => setNovoProduto({ ...novoProduto, casca: parseFloat(e.target.value) || 0 })}
+                      placeholder="0.00"
+                      className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-xs text-muted-foreground mb-1.5 block">🍫 Recheio (R$)</Label>
+                    <Input
+                      type="number"
+                      value={novoProduto.recheio || ""}
+                      onChange={(e) => setNovoProduto({ ...novoProduto, recheio: parseFloat(e.target.value) || 0 })}
+                      placeholder="0.00"
+                      className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-xs text-muted-foreground mb-1.5 block">✨ Adornos (R$)</Label>
+                    <Input
+                      type="number"
+                      value={novoProduto.adornos || ""}
+                      onChange={(e) => setNovoProduto({ ...novoProduto, adornos: parseFloat(e.target.value) || 0 })}
+                      placeholder="0.00"
+                      className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-xs text-muted-foreground mb-1.5 block">📦 Embalagem (R$)</Label>
+                    <Input
+                      type="number"
+                      value={novoProduto.embalagem || ""}
+                      onChange={(e) => setNovoProduto({ ...novoProduto, embalagem: parseFloat(e.target.value) || 0 })}
+                      placeholder="0.00"
+                      className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -461,24 +466,26 @@ export function PrecificacaoCalculadora() {
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
-                  className="bg-muted/30 rounded-xl p-4 flex items-center justify-between"
+                  className="bg-muted/30 rounded-xl p-3 md:p-4"
                 >
-                  <div className="flex items-center gap-3">
-                    <Sparkles className="w-5 h-5 text-gold" />
-                    <span className="font-medium">{novoProduto.nome}</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="text-sm">
-                      <span className="text-muted-foreground">Custo: </span>
-                      <span className="font-bold text-magenta">
-                        R$ {(novoProduto.casca + novoProduto.recheio + novoProduto.adornos + novoProduto.embalagem).toFixed(2)}
-                      </span>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <Sparkles className="w-5 h-5 text-gold shrink-0" />
+                      <span className="font-medium text-sm md:text-base line-clamp-1">{novoProduto.nome}</span>
                     </div>
-                    <div className="text-sm">
-                      <span className="text-muted-foreground">Venda: </span>
-                      <span className="font-bold gradient-text-gold">
-                        R$ {((novoProduto.casca + novoProduto.recheio + novoProduto.adornos + novoProduto.embalagem) * 3).toFixed(2)}
-                      </span>
+                    <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-6">
+                      <div className="text-sm">
+                        <span className="text-muted-foreground">Custo: </span>
+                        <span className="font-bold text-magenta">
+                          R$ {(novoProduto.casca + novoProduto.recheio + novoProduto.adornos + novoProduto.embalagem).toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="text-sm">
+                        <span className="text-muted-foreground">Venda: </span>
+                        <span className="font-bold gradient-text-gold">
+                          R$ {((novoProduto.casca + novoProduto.recheio + novoProduto.adornos + novoProduto.embalagem) * 3).toFixed(2)}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
