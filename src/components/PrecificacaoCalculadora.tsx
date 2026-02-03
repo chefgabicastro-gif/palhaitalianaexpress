@@ -15,36 +15,40 @@ import {
 interface Produto {
   id: string;
   nome: string;
-  casca: number;
+  biscoito: number;
+  leiteCondensado: number;
+  chocolate: number;
   recheio: number;
-  adornos: number;
   embalagem: number;
 }
 
 const produtosExemplo: Produto[] = [
   {
     id: "1",
-    nome: "Ovo de Colher de Brigadeiro 500g (Kilo)",
-    casca: 12,
-    recheio: 9,
-    adornos: 4,
-    embalagem: 5,
+    nome: "Palha Italiana Tradicional (500g)",
+    biscoito: 4.50,
+    leiteCondensado: 8.00,
+    chocolate: 12.00,
+    recheio: 0,
+    embalagem: 3.00,
   },
   {
     id: "2",
-    nome: "Ovo de Colher de Brigadeiro 250g (Meio Kilo)",
-    casca: 8,
-    recheio: 5,
-    adornos: 4,
-    embalagem: 4,
+    nome: "Palha Italiana de Ninho (500g)",
+    biscoito: 4.50,
+    leiteCondensado: 8.00,
+    chocolate: 10.00,
+    recheio: 6.00,
+    embalagem: 3.00,
   },
   {
     id: "3",
-    nome: "Ovo de Páscoa Tradicional 500g",
-    casca: 10,
-    recheio: 5,
-    adornos: 4,
-    embalagem: 3,
+    nome: "Palha Italiana Pistache (500g)",
+    biscoito: 4.50,
+    leiteCondensado: 8.00,
+    chocolate: 10.00,
+    recheio: 15.00,
+    embalagem: 4.00,
   },
 ];
 
@@ -52,13 +56,14 @@ export function PrecificacaoCalculadora() {
   const [produtos, setProdutos] = useState<Produto[]>(produtosExemplo);
   const [novoProduto, setNovoProduto] = useState<Omit<Produto, "id">>({
     nome: "",
-    casca: 0,
+    biscoito: 0,
+    leiteCondensado: 0,
+    chocolate: 0,
     recheio: 0,
-    adornos: 0,
     embalagem: 0,
   });
 
-  const calcularCusto = (p: Produto) => p.casca + p.recheio + p.adornos + p.embalagem;
+  const calcularCusto = (p: Produto) => p.biscoito + p.leiteCondensado + p.chocolate + p.recheio + p.embalagem;
   const calcularPrecoVenda = (p: Produto) => calcularCusto(p) * 3;
   const calcularLucro = (p: Produto) => calcularPrecoVenda(p) - calcularCusto(p);
 
@@ -81,9 +86,10 @@ export function PrecificacaoCalculadora() {
     ]);
     setNovoProduto({
       nome: "",
-      casca: 0,
+      biscoito: 0,
+      leiteCondensado: 0,
+      chocolate: 0,
       recheio: 0,
-      adornos: 0,
       embalagem: 0,
     });
   };
@@ -196,14 +202,15 @@ export function PrecificacaoCalculadora() {
             </div>
 
             {/* Header da Tabela (Desktop) */}
-            <div className="hidden lg:grid lg:grid-cols-12 gap-3 px-4 py-2 bg-muted/30 rounded-xl text-xs font-semibold text-muted-foreground uppercase">
+            <div className="hidden lg:grid lg:grid-cols-14 gap-2 px-4 py-2 bg-muted/30 rounded-xl text-xs font-semibold text-muted-foreground uppercase">
               <div className="col-span-3">Produto</div>
-              <div className="col-span-1 text-center">Casca</div>
+              <div className="col-span-1 text-center">Biscoito</div>
+              <div className="col-span-2 text-center">Leite Cond.</div>
+              <div className="col-span-1 text-center">Chocolate</div>
               <div className="col-span-1 text-center">Recheio</div>
-              <div className="col-span-1 text-center">Adornos</div>
               <div className="col-span-1 text-center">Embalagem</div>
-              <div className="col-span-2 text-center">Custo Total</div>
-              <div className="col-span-2 text-center">Preço de Venda</div>
+              <div className="col-span-2 text-center">Custo</div>
+              <div className="col-span-2 text-center">Preço Venda</div>
               <div className="col-span-1"></div>
             </div>
 
@@ -238,16 +245,34 @@ export function PrecificacaoCalculadora() {
 
                     <div className="grid grid-cols-2 gap-2 sm:gap-3">
                       <div className="space-y-1">
-                        <Label className="text-[10px] sm:text-xs text-muted-foreground">🍫 Casca (R$)</Label>
+                        <Label className="text-[10px] sm:text-xs text-muted-foreground">🍪 Biscoito (R$)</Label>
                         <Input
                           type="number"
-                          value={produto.casca || ""}
-                          onChange={(e) => atualizarProduto(produto.id, "casca", e.target.value)}
+                          value={produto.biscoito || ""}
+                          onChange={(e) => atualizarProduto(produto.id, "biscoito", e.target.value)}
                           className="h-9 sm:h-10 bg-muted/50 border-border/50 rounded-lg sm:rounded-xl text-center text-sm"
                         />
                       </div>
                       <div className="space-y-1">
-                        <Label className="text-[10px] sm:text-xs text-muted-foreground">🍫 Recheio (R$)</Label>
+                        <Label className="text-[10px] sm:text-xs text-muted-foreground">🥛 Leite Cond. (R$)</Label>
+                        <Input
+                          type="number"
+                          value={produto.leiteCondensado || ""}
+                          onChange={(e) => atualizarProduto(produto.id, "leiteCondensado", e.target.value)}
+                          className="h-9 sm:h-10 bg-muted/50 border-border/50 rounded-lg sm:rounded-xl text-center text-sm"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <Label className="text-[10px] sm:text-xs text-muted-foreground">🍫 Chocolate (R$)</Label>
+                        <Input
+                          type="number"
+                          value={produto.chocolate || ""}
+                          onChange={(e) => atualizarProduto(produto.id, "chocolate", e.target.value)}
+                          className="h-9 sm:h-10 bg-muted/50 border-border/50 rounded-lg sm:rounded-xl text-center text-sm"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <Label className="text-[10px] sm:text-xs text-muted-foreground">🍰 Recheio (R$)</Label>
                         <Input
                           type="number"
                           value={produto.recheio || ""}
@@ -255,16 +280,7 @@ export function PrecificacaoCalculadora() {
                           className="h-9 sm:h-10 bg-muted/50 border-border/50 rounded-lg sm:rounded-xl text-center text-sm"
                         />
                       </div>
-                      <div className="space-y-1">
-                        <Label className="text-[10px] sm:text-xs text-muted-foreground">✨ Adornos (R$)</Label>
-                        <Input
-                          type="number"
-                          value={produto.adornos || ""}
-                          onChange={(e) => atualizarProduto(produto.id, "adornos", e.target.value)}
-                          className="h-9 sm:h-10 bg-muted/50 border-border/50 rounded-lg sm:rounded-xl text-center text-sm"
-                        />
-                      </div>
-                      <div className="space-y-1">
+                      <div className="space-y-1 col-span-2">
                         <Label className="text-[10px] sm:text-xs text-muted-foreground">📦 Embalagem (R$)</Label>
                         <Input
                           type="number"
@@ -288,13 +304,13 @@ export function PrecificacaoCalculadora() {
                   </div>
 
                   {/* Desktop Layout */}
-                  <div className="hidden lg:grid lg:grid-cols-12 gap-3 items-center p-4">
+                  <div className="hidden lg:grid lg:grid-cols-14 gap-2 items-center p-4">
                     <div className="col-span-3">
                       <Input
                         value={produto.nome}
                         onChange={(e) => atualizarProduto(produto.id, "nome", e.target.value)}
                         placeholder="Nome do produto"
-                        className="h-10 bg-muted/50 border-border/50 rounded-xl font-medium"
+                        className="h-10 bg-muted/50 border-border/50 rounded-xl font-medium text-sm"
                       />
                     </div>
                     <div className="col-span-1">
@@ -303,14 +319,50 @@ export function PrecificacaoCalculadora() {
                           <TooltipTrigger asChild>
                             <Input
                               type="number"
-                              value={produto.casca || ""}
-                              onChange={(e) => atualizarProduto(produto.id, "casca", e.target.value)}
-                              className="h-10 bg-muted/50 border-border/50 rounded-xl text-center"
+                              value={produto.biscoito || ""}
+                              onChange={(e) => atualizarProduto(produto.id, "biscoito", e.target.value)}
+                              className="h-10 bg-muted/50 border-border/50 rounded-xl text-center text-sm"
                               placeholder="0"
                             />
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Custo da Casca (R$)</p>
+                            <p>Custo do Biscoito (R$)</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                    <div className="col-span-2">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Input
+                              type="number"
+                              value={produto.leiteCondensado || ""}
+                              onChange={(e) => atualizarProduto(produto.id, "leiteCondensado", e.target.value)}
+                              className="h-10 bg-muted/50 border-border/50 rounded-xl text-center text-sm"
+                              placeholder="0"
+                            />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Custo do Leite Condensado (R$)</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                    <div className="col-span-1">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Input
+                              type="number"
+                              value={produto.chocolate || ""}
+                              onChange={(e) => atualizarProduto(produto.id, "chocolate", e.target.value)}
+                              className="h-10 bg-muted/50 border-border/50 rounded-xl text-center text-sm"
+                              placeholder="0"
+                            />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Custo do Chocolate (R$)</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
@@ -323,7 +375,7 @@ export function PrecificacaoCalculadora() {
                               type="number"
                               value={produto.recheio || ""}
                               onChange={(e) => atualizarProduto(produto.id, "recheio", e.target.value)}
-                              className="h-10 bg-muted/50 border-border/50 rounded-xl text-center"
+                              className="h-10 bg-muted/50 border-border/50 rounded-xl text-center text-sm"
                               placeholder="0"
                             />
                           </TooltipTrigger>
@@ -339,27 +391,9 @@ export function PrecificacaoCalculadora() {
                           <TooltipTrigger asChild>
                             <Input
                               type="number"
-                              value={produto.adornos || ""}
-                              onChange={(e) => atualizarProduto(produto.id, "adornos", e.target.value)}
-                              className="h-10 bg-muted/50 border-border/50 rounded-xl text-center"
-                              placeholder="0"
-                            />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Custo dos Adornos (R$)</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    </div>
-                    <div className="col-span-1">
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Input
-                              type="number"
                               value={produto.embalagem || ""}
                               onChange={(e) => atualizarProduto(produto.id, "embalagem", e.target.value)}
-                              className="h-10 bg-muted/50 border-border/50 rounded-xl text-center"
+                              className="h-10 bg-muted/50 border-border/50 rounded-xl text-center text-sm"
                               placeholder="0"
                             />
                           </TooltipTrigger>
@@ -416,34 +450,44 @@ export function PrecificacaoCalculadora() {
                   />
                 </div>
                 
-                {/* Cost inputs - 2x2 grid on mobile, 4 columns on desktop */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {/* Cost inputs - 2x3 grid on mobile, 5 columns on desktop */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
                   <div>
-                    <Label className="text-xs text-muted-foreground mb-1.5 block">🍫 Casca (R$)</Label>
+                    <Label className="text-xs text-muted-foreground mb-1.5 block">🍪 Biscoito (R$)</Label>
                     <Input
                       type="number"
-                      value={novoProduto.casca || ""}
-                      onChange={(e) => setNovoProduto({ ...novoProduto, casca: parseFloat(e.target.value) || 0 })}
+                      value={novoProduto.biscoito || ""}
+                      onChange={(e) => setNovoProduto({ ...novoProduto, biscoito: parseFloat(e.target.value) || 0 })}
                       placeholder="0.00"
                       className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
                     />
                   </div>
                   <div>
-                    <Label className="text-xs text-muted-foreground mb-1.5 block">🍫 Recheio (R$)</Label>
+                    <Label className="text-xs text-muted-foreground mb-1.5 block">🥛 Leite Cond. (R$)</Label>
+                    <Input
+                      type="number"
+                      value={novoProduto.leiteCondensado || ""}
+                      onChange={(e) => setNovoProduto({ ...novoProduto, leiteCondensado: parseFloat(e.target.value) || 0 })}
+                      placeholder="0.00"
+                      className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-xs text-muted-foreground mb-1.5 block">🍫 Chocolate (R$)</Label>
+                    <Input
+                      type="number"
+                      value={novoProduto.chocolate || ""}
+                      onChange={(e) => setNovoProduto({ ...novoProduto, chocolate: parseFloat(e.target.value) || 0 })}
+                      placeholder="0.00"
+                      className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-xs text-muted-foreground mb-1.5 block">🍰 Recheio (R$)</Label>
                     <Input
                       type="number"
                       value={novoProduto.recheio || ""}
                       onChange={(e) => setNovoProduto({ ...novoProduto, recheio: parseFloat(e.target.value) || 0 })}
-                      placeholder="0.00"
-                      className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
-                    />
-                  </div>
-                  <div>
-                    <Label className="text-xs text-muted-foreground mb-1.5 block">✨ Adornos (R$)</Label>
-                    <Input
-                      type="number"
-                      value={novoProduto.adornos || ""}
-                      onChange={(e) => setNovoProduto({ ...novoProduto, adornos: parseFloat(e.target.value) || 0 })}
                       placeholder="0.00"
                       className="h-11 bg-muted/50 border-border/50 rounded-xl text-center"
                     />
@@ -477,13 +521,13 @@ export function PrecificacaoCalculadora() {
                       <div className="text-sm">
                         <span className="text-muted-foreground">Custo: </span>
                         <span className="font-bold text-magenta">
-                          R$ {(novoProduto.casca + novoProduto.recheio + novoProduto.adornos + novoProduto.embalagem).toFixed(2)}
+                          R$ {(novoProduto.biscoito + novoProduto.leiteCondensado + novoProduto.chocolate + novoProduto.recheio + novoProduto.embalagem).toFixed(2)}
                         </span>
                       </div>
                       <div className="text-sm">
                         <span className="text-muted-foreground">Venda: </span>
                         <span className="font-bold gradient-text-gold">
-                          R$ {((novoProduto.casca + novoProduto.recheio + novoProduto.adornos + novoProduto.embalagem) * 3).toFixed(2)}
+                          R$ {((novoProduto.biscoito + novoProduto.leiteCondensado + novoProduto.chocolate + novoProduto.recheio + novoProduto.embalagem) * 3).toFixed(2)}
                         </span>
                       </div>
                     </div>
