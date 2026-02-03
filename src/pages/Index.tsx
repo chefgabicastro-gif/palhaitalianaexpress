@@ -32,6 +32,7 @@ import { CardapioDigitalModal } from "@/components/CardapioDigitalModal";
 import { VideoPlayerModal } from "@/components/VideoPlayerModal";
 import EbookModal from "@/components/EbookModal";
 import { FeaturedLessonModal } from "@/components/FeaturedLessonModal";
+import { PrecificacaoCalculadora } from "@/components/PrecificacaoCalculadora";
 import { useToast } from "@/hooks/use-toast";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { useNotifications } from "@/hooks/useNotifications";
@@ -560,6 +561,11 @@ const Index = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* SEÇÃO - Calculadora de Precificação Detalhada */}
+        <div className="mb-6 animate-fade-in" style={{ animationDelay: '38ms' }}>
+          <PrecificacaoCalculadora />
         </div>
 
         {/* HERO - E-book de Receitas */}
