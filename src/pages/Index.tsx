@@ -526,17 +526,13 @@ const Index = () => {
                   { title: 'Professional', subtitle: 'Mastery Guide', url: '/materials/palha-professional-mastery.pdf', color: 'from-blue-500 to-indigo-600', icon: '👨‍🍳' },
                   { title: 'Bônus Extra', subtitle: 'Técnicas Avançadas', url: '/materials/palha-corte-preco-2.pdf', color: 'from-indigo-500 to-purple-600', icon: '🎁' },
                 ].map((apostila, index) => (
-                  <button
+                  <a
                     key={index}
-                    onClick={() => {
-                      const link = document.createElement('a');
-                      link.href = window.location.origin + apostila.url;
-                      link.download = apostila.title.replace(/\s+/g, '-').toLowerCase() + '.pdf';
-                      document.body.appendChild(link);
-                      link.click();
-                      document.body.removeChild(link);
-                    }}
-                    className="group relative p-4 rounded-xl bg-gradient-to-br from-card/80 to-card/40 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 text-left"
+                    href={apostila.url}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative p-4 rounded-xl bg-gradient-to-br from-card/80 to-card/40 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 text-left block"
                   >
                     {/* Gradient accent */}
                     <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-xl bg-gradient-to-r ${apostila.color} opacity-80 group-hover:opacity-100`} />
@@ -556,7 +552,7 @@ const Index = () => {
                     <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <Download className="w-4 h-4 text-primary" />
                     </div>
-                  </button>
+                  </a>
                 ))}
               </div>
             </div>
