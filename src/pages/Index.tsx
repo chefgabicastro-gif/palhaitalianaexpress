@@ -564,6 +564,42 @@ const Index = () => {
           <PrecificacaoCalculadora />
         </div>
 
+        {/* Banner - Acesso ao Drive */}
+        <a 
+          href="https://drive.google.com/drive/folders/1y8Xdjq3oCo4ZhIaov6qw2nQa9f7cPKKz?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative mb-4 animate-fade-in cursor-pointer group block"
+          style={{ animationDelay: '39ms' }}
+        >
+          <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-red-500/20 border-2 border-dashed border-amber-500/50 hover:border-amber-500 transition-all p-4">
+            <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/30 to-orange-500/30 flex items-center justify-center shrink-0">
+                <FileText className="w-6 h-6 text-amber-500" />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-amber-500/20 text-amber-500 animate-pulse">
+                    ALTERNATIVA
+                  </span>
+                </div>
+                <h4 className="font-heading text-base font-bold text-foreground group-hover:text-amber-500 transition-colors">
+                  Não conseguiu acessar o material?
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  Clique aqui e tenha acesso ao <span className="text-amber-500 font-semibold">Drive completo</span> com todos os arquivos!
+                </p>
+              </div>
+              <div className="shrink-0">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 text-amber-500 font-semibold text-sm group-hover:bg-amber-500 group-hover:text-white transition-all">
+                  Acessar Drive
+                  <Rocket className="w-4 h-4" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
         {/* HERO - E-book de Receitas */}
         <div 
           className="relative mb-6 animate-fade-in cursor-pointer group"
