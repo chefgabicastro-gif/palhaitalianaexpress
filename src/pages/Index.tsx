@@ -33,6 +33,7 @@ import { VideoPlayerModal } from "@/components/VideoPlayerModal";
 import EbookModal from "@/components/EbookModal";
 import { FeaturedLessonModal } from "@/components/FeaturedLessonModal";
 import { PrecificacaoCalculadora } from "@/components/PrecificacaoCalculadora";
+import { BoloCaseiroBonusSection } from "@/components/BoloCaseiroBonusSection";
 import { useToast } from "@/hooks/use-toast";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { useNotifications } from "@/hooks/useNotifications";
@@ -476,6 +477,9 @@ const Index = () => {
             </div>
         </div>
         </div>
+
+        {/* SEÇÃO BÔNUS - Curso de Bolo Caseiro */}
+        <BoloCaseiroBonusSection />
 
         {/* SEÇÃO - Apostilas Extras / Material Complementar */}
         <div className="mb-6 animate-fade-in" style={{ animationDelay: '35ms' }}>
