@@ -16,6 +16,8 @@ import aulaBonus01Thumb from '@/assets/thumbnails/aula-bonus-01.jpg';
 import aulaBonus02Thumb from '@/assets/thumbnails/aula-bonus-02.jpg';
 import aulaMarketing01Thumb from '@/assets/thumbnails/aula-marketing-01.jpg';
 import aulaMarketing02Thumb from '@/assets/thumbnails/aula-marketing-02.jpg';
+import aulaPolhaLimaoThumb from '@/assets/thumbnails/aula-palha-limao.jpg';
+import aulaPalhaPistacheThumb from '@/assets/thumbnails/aula-palha-pistache.jpg';
 
 export interface VideoLesson {
   id: string;
@@ -228,19 +230,39 @@ export const videoLessons: VideoLesson[] = [
     author: 'Tarso Freire',
     order: 12
   },
-  {
-    id: 'aula-marketing-02',
-    title: 'Como criar seu logotipo',
-    description: 'Crie uma identidade visual profissional para seu negócio!',
-    youtubeId: 'aJ9GiT_1JKs',
-    thumbnail: aulaMarketing02Thumb,
-    duration: '20 min',
-    xpReward: 100,
-    isMarketing: true,
-    author: 'Tarso Freire',
-    order: 13
-  }
-];
+   {
+     id: 'aula-marketing-02',
+     title: 'Como criar seu logotipo',
+     description: 'Crie uma identidade visual profissional para seu negócio!',
+     youtubeId: 'aJ9GiT_1JKs',
+     thumbnail: aulaMarketing02Thumb,
+     duration: '20 min',
+     xpReward: 100,
+     isMarketing: true,
+     author: 'Tarso Freire',
+     order: 13
+   },
+   {
+     id: 'aula-palha-limao',
+     title: 'Palha Italiana de Limão',
+     description: 'Uma combinação tropical irresistível! Limão fresco com a delicadeza da Palha Italiana!',
+     youtubeId: 'jIVM84ybDV0',
+     thumbnail: aulaPolhaLimaoThumb,
+     duration: '15 min',
+     xpReward: 100,
+     order: 14
+   },
+   {
+     id: 'aula-palha-pistache',
+     title: 'Palha Italiana de Pistache',
+     description: 'Elegante e sofisticada! A Palha de Pistache que impressiona!',
+     youtubeId: 'MezShDsCChI',
+     thumbnail: aulaPalhaPistacheThumb,
+     duration: '16 min',
+     xpReward: 100,
+     order: 15
+   }
+ ];
 
 // Keep for backwards compatibility, but prefer using lesson.thumbnail
 export const getYoutubeThumbnail = (youtubeId: string, quality: 'default' | 'hq' | 'maxres' = 'maxres') => {
