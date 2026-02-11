@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 import thumbPalhaTradicional from "@/assets/thumbnails/aula-palha-tradicional.jpg";
 import thumbPalhaNinho from "@/assets/thumbnails/aula-palha-ninho.jpg";
+import thumbPalhaLimao from "@/assets/thumbnails/aula-palha-limao.jpg";
+import thumbPalhaPistache from "@/assets/thumbnails/aula-palha-pistache.jpg";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { UserHeader } from "@/components/UserHeader";
@@ -103,6 +105,28 @@ const Index = () => {
       duration: '10:45',
       xp: 100,
       badge: 'Favorita'
+    },
+    {
+      id: 'palha-limao',
+      title: 'Palha Italiana de Limão',
+      description: 'Uma combinação tropical irresistível e refrescante',
+      videoUrl: 'https://www.youtube.com/embed/jIVM84ybDV0',
+      thumbnail: thumbPalhaLimao,
+      materialUrl: '/materials/palha-limao-guia.pdf',
+      duration: '15:00',
+      xp: 100,
+      badge: 'Novidade'
+    },
+    {
+      id: 'palha-pistache',
+      title: 'Palha Italiana de Pistache',
+      description: 'Elegante e sofisticada, sabor gourmet',
+      videoUrl: 'https://www.youtube.com/embed/MezShDsCChI',
+      thumbnail: thumbPalhaPistache,
+      materialUrl: '/materials/palha-pistache-guia.pdf',
+      duration: '16:00',
+      xp: 100,
+      badge: 'Premium'
     }
   ];
   const pwa = usePWAInstall();
