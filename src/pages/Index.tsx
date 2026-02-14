@@ -682,7 +682,7 @@ const Index = () => {
 
         {/* HERO - Grupo do WhatsApp */}
         <a 
-          href="https://chat.whatsapp.com/FNemMSiUlCG5FVWhG4D8PY?mode=gi_t"
+          href="https://chat.whatsapp.com/KMyVJDCsVn0JH2g5VDTD1O"
           target="_blank"
           rel="noopener noreferrer"
           className="relative mb-6 animate-fade-in cursor-pointer group block"
