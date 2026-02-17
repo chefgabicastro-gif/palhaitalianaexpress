@@ -1,11 +1,19 @@
 import { useState } from 'react';
-import { Play, Cake, Sparkles, Gift, ChefHat, Crown, X } from 'lucide-react';
+import { Play, Cake, Sparkles, Gift, ChefHat, Crown, X, Lightbulb } from 'lucide-react';
 import boloCaseiroBanner from '@/assets/thumbnails/bolo-caseiro-banner.jpg';
+import thumbRecheioMorangos from '@/assets/thumbnails/recheio-morangos.jpg';
+import thumbRecheioAlpino from '@/assets/thumbnails/recheio-alpino.jpg';
+import thumbRecheioBrigadeiros from '@/assets/thumbnails/recheio-brigadeiros.jpg';
+import thumbRecheioChocolate from '@/assets/thumbnails/recheio-chocolate.jpg';
+import thumbRecheioDoceLeite from '@/assets/thumbnails/recheio-doce-leite.jpg';
+import thumbRecheioTresChocolates from '@/assets/thumbnails/recheio-tres-chocolates.jpg';
+import thumbRecheioMousse from '@/assets/thumbnails/recheio-mousse.jpg';
 
 interface BonusLesson {
   title: string;
   youtubeId: string;
   category: 'bolo' | 'recheio';
+  thumbnail?: string;
 }
 
 const boloLessons: BonusLesson[] = [
@@ -32,13 +40,13 @@ const boloLessons: BonusLesson[] = [
 ];
 
 const recheioLessons: BonusLesson[] = [
-  { title: 'Recheios de Morangos, Ameixas e Abacaxi', youtubeId: 'rJEI6IVB_iY', category: 'recheio' },
-  { title: 'Recheios de Alpino, Sensação e Diamante Negro', youtubeId: '6rT7SKFE9AA', category: 'recheio' },
-  { title: 'Brigadeiros em Ponto de Bico', youtubeId: 'TU0NpuvXId8', category: 'recheio' },
-  { title: 'Recheio e Cobertura de Chocolate Cremoso', youtubeId: 'wXcLzHbF3Os', category: 'recheio' },
-  { title: 'Recheio de Doce de Leite e Ameixa', youtubeId: '9fLglDYi6PM', category: 'recheio' },
-  { title: 'Três Recheios de Chocolates Famosos', youtubeId: '9f2mN7aR81I', category: 'recheio' },
-  { title: 'Mousse Cremoso de Leite Condensado', youtubeId: 'u5TF0u3tEQA', category: 'recheio' },
+  { title: 'Recheios de Morangos, Ameixas e Abacaxi', youtubeId: 'rJEI6IVB_iY', category: 'recheio', thumbnail: thumbRecheioMorangos },
+  { title: 'Recheios de Alpino, Sensação e Diamante Negro', youtubeId: '6rT7SKFE9AA', category: 'recheio', thumbnail: thumbRecheioAlpino },
+  { title: 'Brigadeiros em Ponto de Bico', youtubeId: 'TU0NpuvXId8', category: 'recheio', thumbnail: thumbRecheioBrigadeiros },
+  { title: 'Recheio e Cobertura de Chocolate Cremoso', youtubeId: 'wXcLzHbF3Os', category: 'recheio', thumbnail: thumbRecheioChocolate },
+  { title: 'Recheio de Doce de Leite e Ameixa', youtubeId: '9fLglDYi6PM', category: 'recheio', thumbnail: thumbRecheioDoceLeite },
+  { title: 'Três Recheios de Chocolates Famosos', youtubeId: '9f2mN7aR81I', category: 'recheio', thumbnail: thumbRecheioTresChocolates },
+  { title: 'Mousse Cremoso de Leite Condensado', youtubeId: 'u5TF0u3tEQA', category: 'recheio', thumbnail: thumbRecheioMousse },
 ];
 
 export function BoloCaseiroBonusSection() {
@@ -201,10 +209,13 @@ export function BoloCaseiroBonusSection() {
 
           {/* Seção: 7 Recheios Profissionais */}
           <div className="mb-5">
-            <div className="flex items-center gap-2 mb-3">
-              <Sparkles className="w-5 h-5 text-orange-500" />
+            <div className="flex items-center gap-2 mb-2">
+              <Lightbulb className="w-5 h-5 text-orange-500" />
               <h4 className="font-heading text-base font-bold text-foreground">7 Recheios para Você se Inspirar</h4>
             </div>
+            <p className="text-xs text-muted-foreground mb-3 pl-7 max-w-2xl">
+              🎯 Conteúdos selecionados de <span className="font-semibold text-foreground/80">outros profissionais do mercado</span> para você estudar técnicas, se inspirar e criar suas próprias versões. Use como referência de sucesso!
+            </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
               {recheioLessons.map((lesson, index) => (
                 <div
@@ -218,7 +229,7 @@ export function BoloCaseiroBonusSection() {
                 >
                   <div className="relative aspect-video">
                     <img 
-                      src={`https://img.youtube.com/vi/${lesson.youtubeId}/hqdefault.jpg`}
+                      src={lesson.thumbnail || `https://img.youtube.com/vi/${lesson.youtubeId}/hqdefault.jpg`}
                       alt={lesson.title}
                       className="w-full h-full object-cover group-hover:brightness-110 transition-all"
                       loading="lazy"
@@ -229,8 +240,9 @@ export function BoloCaseiroBonusSection() {
                       </div>
                     </div>
                     <div className="absolute top-1.5 left-1.5">
-                      <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-orange-500/80 text-white">
-                        Recheio
+                      <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-orange-500/80 text-white flex items-center gap-0.5">
+                        <Lightbulb className="w-2.5 h-2.5" />
+                        Inspiração
                       </span>
                     </div>
                   </div>
