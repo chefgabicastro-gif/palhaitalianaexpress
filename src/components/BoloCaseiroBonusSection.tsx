@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Play, Lock, Cake, Sparkles, Gift, ChefHat, Crown } from 'lucide-react';
+import { Play, Cake, Sparkles, Gift, ChefHat, Crown, X } from 'lucide-react';
 import bonusBoloCaseiroThumb from '@/assets/thumbnails/bonus-bolo-caseiro.jpg';
 
 interface BonusLesson {
@@ -41,10 +41,17 @@ const recheioLessons: BonusLesson[] = [
   { title: 'Mousse Cremoso de Leite Condensado', youtubeId: 'u5TF0u3tEQA', category: 'recheio' },
 ];
 
-const allLessons = [...boloLessons, ...recheioLessons];
-
 export function BoloCaseiroBonusSection() {
-  const [showVideo, setShowVideo] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
+
+  const handlePlay = (youtubeId: string) => {
+    setActiveVideo(youtubeId);
+    // Scroll to player
+    setTimeout(() => {
+      document.getElementById('bolo-player')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  };
 
   return (
     <div className="mb-6 animate-fade-in" style={{ animationDelay: '32ms' }}>
@@ -91,16 +98,16 @@ export function BoloCaseiroBonusSection() {
             Diversifique seu negócio e multiplique seus lucros! 🚀
           </p>
 
-          {/* Preview Video - Aula 01 */}
-          <div className="mb-6">
+          {/* Video Player */}
+          <div className="mb-6" id="bolo-player">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-amber-500/20 border border-amber-500/30">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 rounded-2xl opacity-30 blur-sm animate-pulse" />
               
               <div className="relative aspect-video bg-black rounded-2xl overflow-hidden">
-                {!showVideo ? (
+                {!activeVideo && !showPreview ? (
                   <div 
                     className="relative w-full h-full cursor-pointer group"
-                    onClick={() => setShowVideo(true)}
+                    onClick={() => { setShowPreview(true); setActiveVideo('Ki8fXAB_3ug'); }}
                   >
                     <img 
                       src={bonusBoloCaseiroThumb}
@@ -109,33 +116,39 @@ export function BoloCaseiroBonusSection() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                     
-                    {/* Play button */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-20 h-20 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center shadow-2xl shadow-amber-500/50 group-hover:scale-110 transition-transform">
                         <Play className="w-9 h-9 text-white ml-1" fill="currentColor" />
                       </div>
                     </div>
 
-                    {/* Bottom overlay */}
                     <div className="absolute bottom-0 left-0 right-0 p-4">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-white">
-                          ▶ Aula 01 - Preview
+                          ▶ Aula 01
                         </span>
                       </div>
                       <p className="text-white font-bold text-lg">Seja Bem Vindo - Utensílios Necessários</p>
-                      <p className="text-white/70 text-sm">Clique para assistir a primeira aula grátis!</p>
+                      <p className="text-white/70 text-sm">Clique para assistir!</p>
                     </div>
                   </div>
                 ) : (
-                  <iframe
-                    src="https://www.youtube.com/embed/Ki8fXAB_3ug?rel=0&modestbranding=1&autoplay=1"
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                    allowFullScreen
-                    title="Bolo Caseiro - Aula 01"
-                    style={{ border: 'none' }}
-                  />
+                  <div className="relative w-full h-full">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${activeVideo}?rel=0&modestbranding=1&autoplay=1`}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                      allowFullScreen
+                      title="Bolo Caseiro"
+                      style={{ border: 'none' }}
+                    />
+                    <button
+                      onClick={() => { setActiveVideo(null); setShowPreview(false); }}
+                      className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/80 transition-colors z-10"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
                 )}
               </div>
             </div>
@@ -151,29 +164,33 @@ export function BoloCaseiroBonusSection() {
               {boloLessons.map((lesson, index) => (
                 <div
                   key={index}
-                  className="group relative rounded-xl overflow-hidden bg-card/60 border border-border/50 opacity-90"
+                  className={`group relative rounded-xl overflow-hidden bg-card/60 border cursor-pointer transition-all hover:scale-[1.03] hover:shadow-lg hover:shadow-amber-500/20 ${
+                    activeVideo === lesson.youtubeId 
+                      ? 'border-amber-500 ring-2 ring-amber-500/30' 
+                      : 'border-border/50 hover:border-amber-500/50'
+                  }`}
+                  onClick={() => handlePlay(lesson.youtubeId)}
                 >
-                  {/* Thumbnail */}
                   <div className="relative aspect-video">
                     <img 
                       src={`https://img.youtube.com/vi/${lesson.youtubeId}/hqdefault.jpg`}
                       alt={lesson.title}
-                      className="w-full h-full object-cover brightness-50"
+                      className="w-full h-full object-cover group-hover:brightness-110 transition-all"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                      <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                        <Lock className="w-4 h-4 text-white/80" />
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-amber-500/90 flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                        <Play className="w-4 h-4 text-white ml-0.5" fill="currentColor" />
                       </div>
                     </div>
                     <div className="absolute top-1.5 left-1.5">
-                      <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-black/60 text-white/80">
+                      <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-black/60 text-white">
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>
                   </div>
                   <div className="p-2">
-                    <p className="text-[11px] font-medium text-muted-foreground line-clamp-2 leading-tight">
+                    <p className="text-[11px] font-medium text-foreground/80 line-clamp-2 leading-tight">
                       {lesson.title}
                     </p>
                   </div>
@@ -192,18 +209,23 @@ export function BoloCaseiroBonusSection() {
               {recheioLessons.map((lesson, index) => (
                 <div
                   key={index}
-                  className="group relative rounded-xl overflow-hidden bg-card/60 border border-border/50 opacity-90"
+                  className={`group relative rounded-xl overflow-hidden bg-card/60 border cursor-pointer transition-all hover:scale-[1.03] hover:shadow-lg hover:shadow-orange-500/20 ${
+                    activeVideo === lesson.youtubeId 
+                      ? 'border-orange-500 ring-2 ring-orange-500/30' 
+                      : 'border-border/50 hover:border-orange-500/50'
+                  }`}
+                  onClick={() => handlePlay(lesson.youtubeId)}
                 >
                   <div className="relative aspect-video">
                     <img 
                       src={`https://img.youtube.com/vi/${lesson.youtubeId}/hqdefault.jpg`}
                       alt={lesson.title}
-                      className="w-full h-full object-cover brightness-50"
+                      className="w-full h-full object-cover group-hover:brightness-110 transition-all"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                      <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                        <Lock className="w-4 h-4 text-white/80" />
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-orange-500/90 flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                        <Play className="w-4 h-4 text-white ml-0.5" fill="currentColor" />
                       </div>
                     </div>
                     <div className="absolute top-1.5 left-1.5">
@@ -213,7 +235,7 @@ export function BoloCaseiroBonusSection() {
                     </div>
                   </div>
                   <div className="p-2">
-                    <p className="text-[11px] font-medium text-muted-foreground line-clamp-2 leading-tight">
+                    <p className="text-[11px] font-medium text-foreground/80 line-clamp-2 leading-tight">
                       {lesson.title}
                     </p>
                   </div>
@@ -228,7 +250,7 @@ export function BoloCaseiroBonusSection() {
               <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 rounded-2xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity animate-pulse" />
               <button 
                 className="relative px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white font-bold text-lg shadow-2xl shadow-amber-500/40 hover:shadow-amber-500/60 transition-all hover:scale-105 flex items-center gap-3"
-                onClick={() => setShowVideo(true)}
+                onClick={() => handlePlay('Ki8fXAB_3ug')}
               >
                 <Cake className="w-6 h-6" />
                 Começar Curso de Bolo Caseiro
