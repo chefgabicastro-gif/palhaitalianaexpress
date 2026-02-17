@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Play, Cake, Sparkles, Gift, ChefHat, Crown, X } from 'lucide-react';
-import bonusBoloCaseiroThumb from '@/assets/thumbnails/bonus-bolo-caseiro.jpg';
+import boloCaseiroBanner from '@/assets/thumbnails/bolo-caseiro-banner.jpg';
 
 interface BonusLesson {
   title: string;
@@ -110,7 +110,7 @@ export function BoloCaseiroBonusSection() {
                     onClick={() => { setShowPreview(true); setActiveVideo('Ki8fXAB_3ug'); }}
                   >
                     <img 
-                      src={bonusBoloCaseiroThumb}
+                      src={boloCaseiroBanner}
                       alt="Curso de Bolo Caseiro"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
@@ -203,7 +203,7 @@ export function BoloCaseiroBonusSection() {
           <div className="mb-5">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="w-5 h-5 text-orange-500" />
-              <h4 className="font-heading text-base font-bold text-foreground">7 Recheios Profissionais</h4>
+              <h4 className="font-heading text-base font-bold text-foreground">7 Recheios para Você se Inspirar</h4>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
               {recheioLessons.map((lesson, index) => (
