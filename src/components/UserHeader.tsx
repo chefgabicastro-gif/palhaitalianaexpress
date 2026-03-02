@@ -1,8 +1,7 @@
-import { useAuth } from "@/hooks/useAuth";
 import { XPBadge } from "./XPBadge";
 import { LevelBadge } from "./LevelBadge";
 import { NotificationsDropdown } from "./NotificationsDropdown";
-import { LogOut, Crown } from "lucide-react";
+import { Crown } from "lucide-react";
 
 interface UserHeaderProps {
   nome: string;
@@ -12,8 +11,6 @@ interface UserHeaderProps {
 }
 
 export function UserHeader({ nome, xp, nivel, avatarUrl }: UserHeaderProps) {
-  const { signOut } = useAuth();
-  
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) return "Bom dia";
@@ -36,13 +33,6 @@ export function UserHeader({ nome, xp, nivel, avatarUrl }: UserHeaderProps) {
       {/* Top Actions */}
       <div className="w-full flex justify-end gap-2 mb-4">
         <NotificationsDropdown />
-        <button
-          onClick={signOut}
-          className="p-2.5 rounded-xl bg-secondary/50 backdrop-blur-sm border border-border/50 hover:bg-destructive/20 hover:border-destructive/30 hover:text-destructive transition-all duration-300"
-          title="Sair"
-        >
-          <LogOut className="w-5 h-5" />
-        </button>
       </div>
 
       {/* Avatar with Premium Border */}
@@ -77,7 +67,7 @@ export function UserHeader({ nome, xp, nivel, avatarUrl }: UserHeaderProps) {
 
       {/* Greeting */}
       <h1 className="font-heading font-bold text-2xl md:text-3xl mb-1">
-        <span className="gradient-text-premium">{getGreeting()}, {nome || 'Chef'}!</span>
+        <span className="gradient-text-premium">{getGreeting()}, Chef {nome}!</span>
         <span className="ml-2">✨</span>
       </h1>
       <p className="text-muted-foreground text-sm mb-4">

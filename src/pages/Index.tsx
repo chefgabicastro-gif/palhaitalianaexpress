@@ -10,7 +10,6 @@ import thumbPalhaTradicional from "@/assets/thumbnails/aula-palha-tradicional.jp
 import thumbPalhaNinho from "@/assets/thumbnails/aula-palha-ninho.jpg";
 import thumbPalhaLimao from "@/assets/thumbnails/aula-palha-limao.jpg";
 import thumbPalhaPistache from "@/assets/thumbnails/aula-palha-pistache.jpg";
-import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { UserHeader } from "@/components/UserHeader";
 import { ModulosCard } from "@/components/ModulosCard";
@@ -59,7 +58,7 @@ interface Profile {
 
 const Index = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const chefName = localStorage.getItem('chef-name') || 'Chef';
   const { toast } = useToast();
   const { notifyAppInstalled } = useNotifications();
   const [calculadoraOpen, setCalculadoraOpen] = useState(false);
@@ -148,16 +147,13 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      fetchUserData();
-      checkPWAInstallation();
-    }
-  }, [user]);
+    checkPWAInstallation();
+  }, []);
 
   // Check if app was just installed and create notification
   const checkPWAInstallation = async () => {
     const justInstalled = localStorage.getItem('pwa-just-installed');
-    if (justInstalled === 'true' && user) {
+    if (justInstalled === 'true') {
       localStorage.removeItem('pwa-just-installed');
       await notifyAppInstalled();
       toast({
@@ -167,136 +163,15 @@ const Index = () => {
     }
   };
 
-
-  const fetchUserData = async () => {
-    if (!user) return;
-
-    const { data: profileData } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('user_id', user.id)
-      .maybeSingle();
-    
-    if (profileData) {
-      setProfile(profileData);
-    }
-
-    const startOfMonth = new Date();
-    startOfMonth.setDate(1);
-    startOfMonth.setHours(0, 0, 0, 0);
-
-    const { data: salesData } = await supabase
-      .from('sales')
-      .select('*')
-      .eq('user_id', user.id)
-      .gte('date', startOfMonth.toISOString().split('T')[0])
-      .order('date', { ascending: false });
-
-    setSales(salesData || []);
-
-    const { data: progress } = await supabase
-      .from('user_progress')
-      .select('lesson_id')
-      .eq('user_id', user.id)
-      .eq('completed', true);
-
-    const { data: totalLessons } = await supabase
-      .from('lessons')
-      .select('id');
-
-    if (totalLessons && totalLessons.length > 0) {
-      const completedCount = progress?.length || 0;
-      setModulesProgress(Math.round((completedCount / totalLessons.length) * 100));
-    }
-  };
-
   const handleAddVenda = async (venda: { data: string; quantidade: number; valorTotal: number }) => {
-    if (!user) return;
-
-    const { error } = await supabase.from('sales').insert({
-      user_id: user.id,
-      date: venda.data,
-      quantity: venda.quantidade,
-      unit_price: venda.valorTotal / venda.quantidade,
-      total: venda.valorTotal
+    toast({
+      title: "Venda registrada!",
+      description: `+${venda.quantidade} unidades vendidas`,
     });
-
-    if (error) {
-      toast({
-        title: "Erro ao salvar venda",
-        description: error.message,
-        variant: "destructive"
-      });
-    } else {
-      toast({
-        title: "Venda registrada!",
-        description: `+${venda.quantidade} unidades vendidas`,
-      });
-      fetchUserData();
-      checkAchievements();
-    }
   };
 
   const checkAchievements = async () => {
-    if (!user) return;
-
-    const { data: allSales } = await supabase
-      .from('sales')
-      .select('quantity, total')
-      .eq('user_id', user.id);
-
-    const totalUnits = allSales?.reduce((acc, s) => acc + s.quantity, 0) || 0;
-    const totalRevenue = allSales?.reduce((acc, s) => acc + Number(s.total), 0) || 0;
-
-    const { data: achievements } = await supabase
-      .from('achievements')
-      .select('*');
-
-    const { data: userAchievements } = await supabase
-      .from('user_achievements')
-      .select('achievement_id')
-      .eq('user_id', user.id);
-
-    const unlockedIds = new Set(userAchievements?.map(ua => ua.achievement_id) || []);
-
-    for (const achievement of achievements || []) {
-      if (unlockedIds.has(achievement.id)) continue;
-
-      let shouldUnlock = false;
-
-      if (achievement.requirement_type === 'total_sales' && totalUnits >= achievement.requirement_value) {
-        shouldUnlock = true;
-      } else if (achievement.requirement_type === 'total_revenue' && totalRevenue >= achievement.requirement_value) {
-        shouldUnlock = true;
-      }
-
-      if (shouldUnlock) {
-        await supabase.from('user_achievements').insert({
-          user_id: user.id,
-          achievement_id: achievement.id
-        });
-
-        await supabase.from('notifications').insert({
-          user_id: user.id,
-          title: `🏆 Nova Conquista!`,
-          message: `Você desbloqueou "${achievement.name}"! +${achievement.xp_reward} XP`,
-          type: 'success'
-        });
-
-        const newXp = (profile?.xp || 0) + achievement.xp_reward;
-        await supabase
-          .from('profiles')
-          .update({ xp: newXp })
-          .eq('user_id', user.id);
-
-        toast({
-          title: `🏆 ${achievement.name}`,
-          description: `Conquista desbloqueada! +${achievement.xp_reward} XP`,
-        });
-
-        fetchUserData();
-      }
-    }
+    // No-op without auth
   };
 
   const totalFaturamento = sales.reduce((acc, v) => acc + Number(v.total), 0);
@@ -319,10 +194,9 @@ const Index = () => {
       <div className="relative max-w-6xl mx-auto px-4 pb-12">
         {/* Header do Usuário */}
         <UserHeader 
-          nome={profile?.name || "Chef"}
-          xp={profile?.xp || 0}
+          nome={chefName}
+          xp={0}
           nivel=""
-          avatarUrl={profile?.avatar_url || undefined}
         />
 
         {/* HERO - Vídeo de Boas-Vindas */}

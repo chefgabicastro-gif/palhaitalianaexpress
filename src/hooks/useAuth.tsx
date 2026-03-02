@@ -1,10 +1,13 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '@/integrations/supabase/client';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+
+interface FakeUser {
+  id: string;
+  email?: string;
+}
 
 interface AuthContextType {
-  user: User | null;
-  session: Session | null;
+  user: FakeUser | null;
+  session: null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signUp: (email: string, password: string, name: string) => Promise<{ error: Error | null }>;
@@ -13,53 +16,49 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Generate or retrieve a stable anonymous ID for this device
+function getAnonymousId(): string {
+  let id = localStorage.getItem('chef-anonymous-id');
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem('chef-anonymous-id', id);
+  }
+  return id;
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const chefName = localStorage.getItem('chef-name');
+  const [user] = useState<FakeUser | null>(
+    chefName ? { id: getAnonymousId() } : null
+  );
+
+  // Listen for storage changes (when name is set during onboarding)
+  const [currentUser, setCurrentUser] = useState<FakeUser | null>(user);
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        setLoading(false);
+    const checkName = () => {
+      const name = localStorage.getItem('chef-name');
+      if (name) {
+        setCurrentUser({ id: getAnonymousId() });
+      } else {
+        setCurrentUser(null);
       }
-    );
+    };
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
+    window.addEventListener('storage', checkName);
+    return () => window.removeEventListener('storage', checkName);
   }, []);
 
-  const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return { error };
-  };
-
-  const signUp = async (email: string, password: string, name: string) => {
-    const redirectUrl = `${window.location.origin}/`;
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: redirectUrl,
-        data: { name }
-      }
-    });
-    return { error };
-  };
-
+  const signIn = async () => ({ error: null });
+  const signUp = async () => ({ error: null });
   const signOut = async () => {
-    await supabase.auth.signOut();
+    localStorage.removeItem('chef-name');
+    localStorage.removeItem('chef-anonymous-id');
+    window.location.href = '/auth';
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, loading, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user: currentUser, session: null, loading: false, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );
