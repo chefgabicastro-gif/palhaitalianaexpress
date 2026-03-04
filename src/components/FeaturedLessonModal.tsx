@@ -105,13 +105,7 @@ export function FeaturedLessonModal({
                 
                 <button
                   onClick={() => {
-                    const link = document.createElement('a');
-                    link.href = window.location.origin + lesson.materialUrl;
-                    link.download = getMaterialName(lesson.title) + '.pdf';
-                    link.target = '_blank';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    window.open(lesson.materialUrl, '_blank', 'noopener,noreferrer');
                   }}
                   className="flex items-center justify-between p-3 rounded-xl bg-card/80 border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all group w-full text-left"
                 >
