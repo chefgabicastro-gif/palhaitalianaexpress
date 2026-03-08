@@ -131,7 +131,6 @@ const Index = () => {
     }
   ];
   const pwa = usePWAInstall();
-  const [sales, setSales] = useState<Sale[]>([]);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [modulesProgress, setModulesProgress] = useState(0);
 
