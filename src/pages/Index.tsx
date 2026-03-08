@@ -196,8 +196,8 @@ const Index = () => {
         {/* Header do Usuário */}
         <UserHeader 
           nome={chefName}
-          xp={0}
-          nivel=""
+          xp={xp}
+          nivel={level}
         />
 
         {/* HERO - Vídeo de Boas-Vindas */}
