@@ -1003,7 +1003,7 @@ export const recipes: Recipe[] = [
     xpReward: 75,
     isPremium: true,
     yield: '40 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Doce de leite', quantity: '200', unit: 'gramas' },
