@@ -839,7 +839,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 50,
     yield: '40 unidades',
-    prepTime: '25 minutos + 2h refrigeração',
+    prepTime: '25 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
