@@ -124,9 +124,9 @@ export const RecipeDetailModal = ({
                       <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <span className="font-medium">{ing.quantity} {ing.unit}</span>
-                        <span className="text-muted-foreground ml-1">{ing.item}</span>
+                        <span className="text-foreground ml-1">{ing.item}</span>
                         {ing.notes && (
-                          <span className="text-xs text-muted-foreground italic ml-1">({ing.notes})</span>
+                          <span className="text-xs text-foreground/70 italic ml-1">({ing.notes})</span>
                         )}
                       </div>
                     </div>
