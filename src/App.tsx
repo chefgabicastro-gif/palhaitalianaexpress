@@ -12,6 +12,7 @@ import Conquistas from "./pages/Conquistas";
 import Graficos from "./pages/Graficos";
 import Aulas from "./pages/Aulas";
 import NotFound from "./pages/NotFound";
+import { ChatAssistant } from "./components/ChatAssistant";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/aulas" element={<Aulas />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <ChatAssistant />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>

@@ -1,8 +1,9 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Play, CheckCircle, Star, Clock, Sparkles, Crown, FileDown, BookOpen } from "lucide-react";
+import { X, Play, CheckCircle, Star, Clock, Sparkles, Crown, FileDown, BookOpen, Share2 } from "lucide-react";
 import { VideoLesson, getYoutubeThumbnail } from "@/data/videoLessons";
 import { useState } from "react";
+import { ShareButton } from "@/components/ShareButton";
 
 interface VideoPlayerModalProps {
   lesson: VideoLesson | null;
@@ -202,6 +203,13 @@ export function VideoPlayerModal({
                     </span>
                   </motion.button>
                 )}
+                <ShareButton
+                  title={lesson.title}
+                  text={`🎬 ${lesson.title}\n📚 ${lesson.description}\n\nConfira essa aula incrível!`}
+                  variant="outline"
+                  size="default"
+                  className="sm:w-auto"
+                />
               </div>
 
               {/* Tips */}

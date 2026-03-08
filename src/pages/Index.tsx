@@ -40,6 +40,7 @@ import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { useNotifications } from "@/hooks/useNotifications";
 import { recipes, getPopularRecipes } from "@/data/recipes";
 import { videoLessons } from "@/data/videoLessons";
+import { useLocalProgress } from "@/hooks/useLocalProgress";
 
 interface Sale {
   id: string;
@@ -61,6 +62,7 @@ const Index = () => {
   const chefName = localStorage.getItem('chef-name') || 'Chef';
   const { toast } = useToast();
   const { notifyAppInstalled } = useNotifications();
+  const { xp, level, markLessonWatched, markRecipeCompleted, isLessonWatched, isRecipeCompleted, sales, addSale } = useLocalProgress();
   const [calculadoraOpen, setCalculadoraOpen] = useState(false);
   const [vendasOpen, setVendasOpen] = useState(false);
   const [formasVendaOpen, setFormasVendaOpen] = useState(false);
@@ -129,7 +131,6 @@ const Index = () => {
     }
   ];
   const pwa = usePWAInstall();
-  const [sales, setSales] = useState<Sale[]>([]);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [modulesProgress, setModulesProgress] = useState(0);
 
@@ -195,8 +196,8 @@ const Index = () => {
         {/* Header do Usuário */}
         <UserHeader 
           nome={chefName}
-          xp={0}
-          nivel=""
+          xp={xp}
+          nivel={level}
         />
 
         {/* HERO - Vídeo de Boas-Vindas */}

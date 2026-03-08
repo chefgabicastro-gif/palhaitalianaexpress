@@ -1,73 +1,104 @@
 
-
-# Plano: Assistente de IA "Chef IA" + Funcionalidades Premium
+# Plano: E-book de Receitas Baixável
 
 ## Visão Geral
 
-Adicionar um **Assistente de IA integrado** ao app que funciona como um "Chef Consultor Virtual" — o lead pode tirar dúvidas sobre receitas, precificação, vendas, embalagens e técnicas de confeitaria. Isso eleva drasticamente o valor percebido do app. Além disso, adicionar funcionalidades complementares de alto impacto.
+Vamos criar um sistema que permite ao usuário baixar todas as 37 receitas em formato de E-book PDF profissional, com layout bonito e organizado por categorias.
 
 ---
 
-## 1. Assistente de IA "Chef IA" (funcionalidade principal)
+## O Que Será Criado
 
-Um chatbot flutuante no canto inferior direito do app, estilo WhatsApp, onde o lead conversa com uma IA especializada em confeitaria e negócios de palha italiana.
+### 1. Botão de Download na Home
+Um novo card na página inicial com destaque para baixar o E-book completo com todas as receitas.
 
-**Como funciona:**
-- Botão flutuante com ícone de chat no canto inferior direito
-- Abre um painel de conversa com histórico (salvo em localStorage)
-- Edge function no backend chama o Lovable AI Gateway (modelo `google/gemini-3-flash-preview`)
-- System prompt especializado: "Você é o Chef IA, assistente especialista em palha italiana, confeitaria artesanal, precificação de doces e estratégias de vendas..."
-- Streaming de respostas token por token para UX fluida
-- Sugestões rápidas pré-definidas: "Como precificar?", "Dica de embalagem", "Receita de palha de morango"
+### 2. Modal de E-book
+Uma nova janela que permite:
+- Visualizar preview do e-book
+- Escolher template/estilo (Elegante, Moderno, etc.)
+- Gerar e baixar o PDF completo
 
-**Componentes:**
-- `src/components/ChatAssistant.tsx` — UI do chat flutuante
-- `supabase/functions/chef-ai/index.ts` — Edge function com system prompt e streaming
-- Atualizar `supabase/config.toml` para registrar a função
-
----
-
-## 2. Gerador de Legendas para Instagram/WhatsApp (via IA)
-
-Botão em cada receita que gera automaticamente uma legenda de venda para redes sociais usando a IA. O lead clica, recebe uma legenda pronta e copia com um toque.
-
-- Usa a mesma edge function com um modo diferente (`type: "caption"`)
-- Botão "Gerar Legenda de Venda" nas receitas
-
----
-
-## 3. Sistema de Progresso Local
-
-- Marcar aulas como assistidas (localStorage)
-- Barra de progresso nos módulos e no header
-- XP baseado em aulas vistas (atualiza o header que hoje mostra 0)
-- Badges desbloqueáveis conforme progresso
-
----
-
-## 4. Compartilhar via WhatsApp
-
-- Botão de compartilhar em receitas e aulas
-- Usa Web Share API (nativa no celular) ou link direto do WhatsApp como fallback
+### 3. Estrutura do E-book PDF
+```text
++---------------------------+
+|     CAPA DO E-BOOK        |
+|  "37 Receitas de Palha    |
+|      Italiana"            |
+|     [Logo/Imagem]         |
++---------------------------+
+|     SUMÁRIO               |
+|  - Base Clássica (7)      |
+|  - Ninho & Variações (6)  |
+|  - Frutadas (5)           |
+|  - ...mais categorias     |
++---------------------------+
+|     RECEITA 1             |
+|  Nome + Categoria         |
+|  Ingredientes             |
+|  Modo de Preparo          |
+|  Dicas de Congelamento    |
+|  Dicas de Ouro            |
++---------------------------+
+|     RECEITA 2...          |
++---------------------------+
+```
 
 ---
 
-## Prioridade de Implementação
+## Arquivos a Criar/Modificar
 
-| Ordem | Feature | Impacto |
-|-------|---------|---------|
-| 1 | Assistente Chef IA (chat) | Altíssimo — diferencial único |
-| 2 | Gerador de legendas IA | Alto — valor prático imediato |
-| 3 | Sistema de progresso local | Alto — engajamento |
-| 4 | Compartilhar via WhatsApp | Médio — viralização |
+| Arquivo | Ação |
+|---------|------|
+| `src/components/EbookModal.tsx` | Criar novo modal do e-book |
+| `src/pages/Index.tsx` | Adicionar card/botão para o e-book |
+| `package.json` | Adicionar `jspdf` e `html2canvas` |
+
+---
+
+## Como Vai Funcionar
+
+1. **Usuário clica** no card "Baixar E-book" na Home
+2. **Modal abre** com opções de template e preview
+3. **Ao clicar "Baixar"**, o sistema:
+   - Gera cada página do PDF usando HTML renderizado
+   - Agrupa todas as 37 receitas organizadas por categoria
+   - Baixa automaticamente o arquivo PDF
 
 ---
 
 ## Detalhes Técnicos
 
-- **LOVABLE_API_KEY** precisa ser habilitada no projeto (será provisionada automaticamente pelo Cloud)
-- Edge function `chef-ai` com CORS, streaming SSE, system prompt em português
-- Frontend usa `fetch` direto para streaming (não `supabase.functions.invoke` que não suporta stream)
-- Chat salva histórico em localStorage (sem necessidade de banco)
-- Markdown rendering nas respostas da IA com `react-markdown` (precisa instalar)
+### Bibliotecas Necessárias
+- **jsPDF**: Geração de documentos PDF
+- **html2canvas**: Captura de elementos HTML para imagem
 
+### Estrutura de Cada Página de Receita no PDF
+- Título com emoji da categoria
+- Badge de dificuldade e XP
+- Lista de ingredientes formatada
+- Passos numerados com dicas destacadas
+- Seção de congelamento
+- Dicas de ouro
+
+### Templates Disponíveis
+Seguindo o padrão do Cardápio Digital:
+- **Elegante**: Fundo escuro com dourado
+- **Moderno**: Clean e minimalista
+- **Colorido**: Vibrante com gradientes
+
+---
+
+## Experiência do Usuário
+
+1. Card atrativo na Home com ícone de livro
+2. Modal com preview do e-book antes de baixar
+3. Escolha de template visual
+4. Barra de progresso durante geração
+5. Download automático do PDF
+6. Notificação de sucesso
+
+---
+
+## Resultado Final
+
+O lead poderá baixar um PDF profissional com todas as 37 receitas, pronto para consultar offline ou imprimir, aumentando o valor percebido do aplicativo.
