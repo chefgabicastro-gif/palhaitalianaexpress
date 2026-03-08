@@ -6,6 +6,8 @@ import { Recipe } from "@/data/recipes";
 import { Clock, ChefHat, Snowflake, Lightbulb, CheckCircle2, Star, Download, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRecipePDF } from "@/hooks/useRecipePDF";
+import { CaptionGeneratorButton } from "@/components/CaptionGeneratorButton";
+import { ShareButton } from "@/components/ShareButton";
 
 interface RecipeDetailModalProps {
   recipe: Recipe | null;
