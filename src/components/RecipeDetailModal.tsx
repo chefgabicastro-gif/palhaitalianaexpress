@@ -79,7 +79,7 @@ export const RecipeDetailModal = ({
           </div>
 
           {/* Share & Download Buttons */}
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-wrap gap-2 mt-4">
             <Button
               variant="outline"
               size="sm"
@@ -89,15 +89,11 @@ export const RecipeDetailModal = ({
               <Download className="w-4 h-4" />
               Baixar PDF
             </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex-1 gap-2 text-green-500 border-green-500/50 hover:bg-green-500/10"
-              onClick={() => shareOnWhatsApp(recipe)}
-            >
-              <Share2 className="w-4 h-4" />
-              WhatsApp
-            </Button>
+            <ShareButton
+              title={recipe.name}
+              text={`🍫 Receita: ${recipe.name}\n📋 Rendimento: ${recipe.yield}\n⏱ Tempo: ${recipe.prepTime}\n\nConfira essa receita incrível de palha italiana!`}
+            />
+            <CaptionGeneratorButton recipeName={recipe.name} />
           </div>
         </DialogHeader>
 
