@@ -381,6 +381,9 @@ const Index = () => {
         {/* SEÇÃO BÔNUS - Curso de Bolo Caseiro */}
         <BoloCaseiroBonusSection />
 
+        {/* SEÇÃO BÔNUS - Doces Extras */}
+        <DocesExtraBonusSection />
+
         {/* SEÇÃO - Apostilas Extras / Material Complementar */}
         <div className="mb-6 animate-fade-in" style={{ animationDelay: '35ms' }}>
           <div className="relative card-glass p-6 overflow-hidden">
