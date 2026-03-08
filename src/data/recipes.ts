@@ -1466,7 +1466,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 100,
     yield: '35 unidades',
-    prepTime: '30 minutos + 3h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite de coco', quantity: '1', unit: 'lata (400ml)' },
       { item: 'Chocolate 70% cacau vegano', quantity: '200', unit: 'gramas' },
