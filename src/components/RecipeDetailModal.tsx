@@ -29,10 +29,20 @@ export const RecipeDetailModal = ({
 }: RecipeDetailModalProps) => {
   const { generateRecipePDF } = useRecipePDF();
   const [cookingMode, setCookingMode] = useState(false);
-  
-  if (!recipe) return null;
 
   const difficultyColors = {
+    easy: 'bg-success/20 text-success',
+    medium: 'bg-warning/20 text-warning',
+    hard: 'bg-destructive/20 text-destructive'
+  };
+
+  const difficultyLabels = {
+    easy: 'Fácil',
+    medium: 'Médio',
+    hard: 'Difícil'
+  };
+
+  if (!recipe) return null;
     easy: 'bg-success/20 text-success',
     medium: 'bg-warning/20 text-warning',
     hard: 'bg-destructive/20 text-destructive'
