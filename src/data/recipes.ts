@@ -1428,7 +1428,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 75,
     yield: '40 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Bananas maduras amassadas', quantity: '4', unit: 'unidades' },
       { item: 'Aveia em flocos', quantity: '1', unit: 'xícara (80g)' },
