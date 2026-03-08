@@ -203,6 +203,13 @@ export function VideoPlayerModal({
                     </span>
                   </motion.button>
                 )}
+                <ShareButton
+                  title={lesson.title}
+                  text={`🎬 ${lesson.title}\n📚 ${lesson.description}\n\nConfira essa aula incrível!`}
+                  variant="outline"
+                  size="default"
+                  className="sm:w-auto"
+                />
               </div>
 
               {/* Tips */}
