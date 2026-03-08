@@ -40,6 +40,7 @@ import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { useNotifications } from "@/hooks/useNotifications";
 import { recipes, getPopularRecipes } from "@/data/recipes";
 import { videoLessons } from "@/data/videoLessons";
+import { useLocalProgress } from "@/hooks/useLocalProgress";
 
 interface Sale {
   id: string;
