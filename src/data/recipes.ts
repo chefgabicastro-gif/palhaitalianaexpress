@@ -1503,7 +1503,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 75,
     yield: '35 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado (verificar sem glúten)', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
