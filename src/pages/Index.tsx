@@ -62,6 +62,7 @@ const Index = () => {
   const chefName = localStorage.getItem('chef-name') || 'Chef';
   const { toast } = useToast();
   const { notifyAppInstalled } = useNotifications();
+  const { xp, level, markLessonWatched, markRecipeCompleted, isLessonWatched, isRecipeCompleted, sales, addSale } = useLocalProgress();
   const [calculadoraOpen, setCalculadoraOpen] = useState(false);
   const [vendasOpen, setVendasOpen] = useState(false);
   const [formasVendaOpen, setFormasVendaOpen] = useState(false);
