@@ -99,7 +99,7 @@ export const recipes: Recipe[] = [
     xpReward: 50,
     isPopular: true,
     yield: '40 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -138,7 +138,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 50,
     yield: '40 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -179,7 +179,7 @@ export const recipes: Recipe[] = [
     xpReward: 50,
     isPopular: true,
     yield: '40 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -220,7 +220,7 @@ export const recipes: Recipe[] = [
     xpReward: 50,
     isPopular: true,
     yield: '45 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '2', unit: 'latas (790g)' },
       { item: 'Chocolate em pó', quantity: '6', unit: 'colheres de sopa (60g)' },
@@ -260,7 +260,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 75,
     yield: '40 unidades',
-    prepTime: '40 minutos + 3h refrigeração',
+    prepTime: '40 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '2', unit: 'latas (790g)' },
       { item: 'Chocolate em pó 100% cacau', quantity: '5', unit: 'colheres de sopa (50g)' },
@@ -303,7 +303,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 50,
     yield: '40 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -342,7 +342,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 50,
     yield: '40 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -385,7 +385,7 @@ export const recipes: Recipe[] = [
     xpReward: 50,
     isPopular: true,
     yield: '40 unidades',
-    prepTime: '25 minutos + 2h refrigeração',
+    prepTime: '25 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -425,7 +425,7 @@ export const recipes: Recipe[] = [
     xpReward: 50,
     isPopular: true,
     yield: '40 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -465,7 +465,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 75,
     yield: '35 unidades',
-    prepTime: '40 minutos + 3h refrigeração',
+    prepTime: '40 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '200', unit: 'ml' },
@@ -506,7 +506,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 50,
     yield: '40 unidades',
-    prepTime: '25 minutos + 2h refrigeração',
+    prepTime: '25 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -545,7 +545,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 50,
     yield: '40 unidades',
-    prepTime: '25 minutos + 2h refrigeração',
+    prepTime: '25 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -588,7 +588,7 @@ export const recipes: Recipe[] = [
     xpReward: 75,
     isPopular: true,
     yield: '40 unidades',
-    prepTime: '35 minutos + 3h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -631,7 +631,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 75,
     yield: '40 unidades',
-    prepTime: '35 minutos + 3h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -674,7 +674,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 50,
     yield: '40 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -713,7 +713,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 75,
     yield: '40 unidades',
-    prepTime: '40 minutos + 2h refrigeração',
+    prepTime: '40 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Coco ralado', quantity: '150', unit: 'gramas', notes: 'para queimar' },
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
@@ -753,7 +753,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 75,
     yield: '40 unidades',
-    prepTime: '35 minutos + 3h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -800,7 +800,7 @@ export const recipes: Recipe[] = [
     xpReward: 50,
     isPopular: true,
     yield: '40 unidades',
-    prepTime: '25 minutos + 2h refrigeração',
+    prepTime: '25 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -839,7 +839,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 50,
     yield: '40 unidades',
-    prepTime: '25 minutos + 2h refrigeração',
+    prepTime: '25 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -878,7 +878,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 50,
     yield: '40 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -920,7 +920,7 @@ export const recipes: Recipe[] = [
     xpReward: 50,
     isPopular: true,
     yield: '40 unidades',
-    prepTime: '25 minutos + 2h refrigeração',
+    prepTime: '25 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -959,7 +959,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 75,
     yield: '40 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Amendoim torrado sem pele', quantity: '150', unit: 'gramas' },
       { item: 'Açúcar', quantity: '3', unit: 'colheres de sopa (45g)', notes: 'para caramelizar' },
@@ -1003,7 +1003,7 @@ export const recipes: Recipe[] = [
     xpReward: 75,
     isPremium: true,
     yield: '40 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Doce de leite', quantity: '200', unit: 'gramas' },
@@ -1042,7 +1042,7 @@ export const recipes: Recipe[] = [
     xpReward: 100,
     isPremium: true,
     yield: '40 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Doce de leite', quantity: '150', unit: 'gramas' },
@@ -1083,7 +1083,7 @@ export const recipes: Recipe[] = [
     xpReward: 100,
     isPremium: true,
     yield: '40 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Doce de leite', quantity: '150', unit: 'gramas' },
@@ -1123,7 +1123,7 @@ export const recipes: Recipe[] = [
     xpReward: 125,
     isPremium: true,
     yield: '35 unidades',
-    prepTime: '45 minutos + 4h refrigeração',
+    prepTime: '45 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite fresco', quantity: '200', unit: 'ml' },
@@ -1172,7 +1172,7 @@ export const recipes: Recipe[] = [
     xpReward: 100,
     isSeasonal: true,
     yield: '40 unidades',
-    prepTime: '40 minutos + 3h refrigeração',
+    prepTime: '40 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -1221,7 +1221,7 @@ export const recipes: Recipe[] = [
     xpReward: 100,
     isSeasonal: true,
     yield: '40 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -1261,7 +1261,7 @@ export const recipes: Recipe[] = [
     xpReward: 100,
     isSeasonal: true,
     yield: '40 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -1303,7 +1303,7 @@ export const recipes: Recipe[] = [
     xpReward: 75,
     isSeasonal: true,
     yield: '40 unidades',
-    prepTime: '45 minutos + 3h refrigeração',
+    prepTime: '45 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)', notes: 'para massa de ninho' },
       { item: 'Creme de leite', quantity: '1/2', unit: 'caixa (100g)', notes: 'para massa de ninho' },
@@ -1352,7 +1352,7 @@ export const recipes: Recipe[] = [
     xpReward: 100,
     isPopular: true,
     yield: '30 unidades',
-    prepTime: '25 minutos + 2h refrigeração',
+    prepTime: '25 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Pasta de amendoim natural (sem açúcar)', quantity: '200', unit: 'gramas' },
       { item: 'Whey protein sabor chocolate', quantity: '2', unit: 'scoops (60g)' },
@@ -1391,7 +1391,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 100,
     yield: '35 unidades',
-    prepTime: '30 minutos + 3h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Cream cheese', quantity: '400', unit: 'gramas' },
       { item: 'Chocolate 85% cacau derretido', quantity: '100', unit: 'gramas' },
@@ -1428,7 +1428,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 75,
     yield: '40 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Bananas maduras amassadas', quantity: '4', unit: 'unidades' },
       { item: 'Aveia em flocos', quantity: '1', unit: 'xícara (80g)' },
@@ -1466,7 +1466,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 100,
     yield: '35 unidades',
-    prepTime: '30 minutos + 3h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite de coco', quantity: '1', unit: 'lata (400ml)' },
       { item: 'Chocolate 70% cacau vegano', quantity: '200', unit: 'gramas' },
@@ -1503,7 +1503,7 @@ export const recipes: Recipe[] = [
     difficulty: 'easy',
     xpReward: 75,
     yield: '35 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado (verificar sem glúten)', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },
@@ -1580,7 +1580,7 @@ export const recipes: Recipe[] = [
     xpReward: 100,
     isPremium: true,
     yield: '30 unidades',
-    prepTime: '30 minutos + 2h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
       { item: 'Creme de leite', quantity: '1', unit: 'caixa (200g)' },

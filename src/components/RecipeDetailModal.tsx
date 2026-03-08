@@ -72,7 +72,7 @@ export const RecipeDetailModal = ({
               </div>
             </div>
             
-            <div className="flex gap-4 mt-4 text-sm text-muted-foreground">
+            <div className="flex gap-4 mt-4 text-sm text-foreground">
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
                 {recipe.prepTime}
