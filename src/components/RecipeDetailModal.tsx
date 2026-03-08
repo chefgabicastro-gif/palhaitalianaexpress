@@ -126,7 +126,7 @@ export const RecipeDetailModal = ({
                         <span className="font-medium">{ing.quantity} {ing.unit}</span>
                         <span className="text-foreground ml-1">{ing.item}</span>
                         {ing.notes && (
-                          <span className="text-xs text-muted-foreground italic ml-1">({ing.notes})</span>
+                          <span className="text-xs text-foreground/70 italic ml-1">({ing.notes})</span>
                         )}
                       </div>
                     </div>
