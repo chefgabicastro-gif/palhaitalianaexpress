@@ -35,6 +35,7 @@ import EbookModal from "@/components/EbookModal";
 import { FeaturedLessonModal } from "@/components/FeaturedLessonModal";
 import { PrecificacaoCalculadora } from "@/components/PrecificacaoCalculadora";
 import { BoloCaseiroBonusSection } from "@/components/BoloCaseiroBonusSection";
+import { DocesExtraBonusSection } from "@/components/DocesExtraBonusSection";
 import { useToast } from "@/hooks/use-toast";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { useNotifications } from "@/hooks/useNotifications";
