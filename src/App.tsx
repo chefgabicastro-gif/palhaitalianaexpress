@@ -32,6 +32,7 @@ const App = () => (
             <Route path="/aulas" element={<Aulas />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <ChatAssistant />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
