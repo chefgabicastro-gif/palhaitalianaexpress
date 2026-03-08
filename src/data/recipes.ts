@@ -1391,7 +1391,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 100,
     yield: '35 unidades',
-    prepTime: '30 minutos + 3h refrigeração',
+    prepTime: '30 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Cream cheese', quantity: '400', unit: 'gramas' },
       { item: 'Chocolate 85% cacau derretido', quantity: '100', unit: 'gramas' },
