@@ -17,6 +17,28 @@ const QUICK_SUGGESTIONS = [
 ];
 
 const STORAGE_KEY = "chef-ai-history";
+const DAILY_LIMIT_KEY = "chef-ai-daily";
+const MAX_DAILY_MESSAGES = 15;
+
+function getDailyCount(): { count: number; date: string } {
+  try {
+    const stored = localStorage.getItem(DAILY_LIMIT_KEY);
+    if (stored) {
+      const data = JSON.parse(stored);
+      const today = new Date().toDateString();
+      if (data.date === today) return data;
+    }
+  } catch {}
+  return { count: 0, date: new Date().toDateString() };
+}
+
+function incrementDailyCount() {
+  const today = new Date().toDateString();
+  const current = getDailyCount();
+  const updated = { count: current.date === today ? current.count + 1 : 1, date: today };
+  localStorage.setItem(DAILY_LIMIT_KEY, JSON.stringify(updated));
+  return updated.count;
+}
 
 export function ChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
