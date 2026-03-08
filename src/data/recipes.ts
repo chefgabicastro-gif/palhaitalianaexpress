@@ -1352,7 +1352,7 @@ export const recipes: Recipe[] = [
     xpReward: 100,
     isPopular: true,
     yield: '30 unidades',
-    prepTime: '25 minutos + 2h refrigeração',
+    prepTime: '25 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Pasta de amendoim natural (sem açúcar)', quantity: '200', unit: 'gramas' },
       { item: 'Whey protein sabor chocolate', quantity: '2', unit: 'scoops (60g)' },
