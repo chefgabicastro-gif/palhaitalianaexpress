@@ -139,7 +139,20 @@ export function ChatAssistant() {
   const send = async (text?: string) => {
     const msg = text || input.trim();
     if (!msg || isLoading) return;
+
+    // Check daily limit
+    const daily = getDailyCount();
+    const remaining = MAX_DAILY_MESSAGES - daily.count;
+    if (remaining <= 0) {
+      toast({
+        title: "Limite diário atingido",
+        description: `Você usou suas ${MAX_DAILY_MESSAGES} mensagens de hoje. Volte amanhã! 😊`,
+      });
+      return;
+    }
+
     setInput("");
+    incrementDailyCount();
 
     const userMsg: Msg = { role: "user", content: msg };
     const newMessages = [...messages, userMsg];
