@@ -220,7 +220,7 @@ export const recipes: Recipe[] = [
     xpReward: 50,
     isPopular: true,
     yield: '45 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '2', unit: 'latas (790g)' },
       { item: 'Chocolate em pó', quantity: '6', unit: 'colheres de sopa (60g)' },
