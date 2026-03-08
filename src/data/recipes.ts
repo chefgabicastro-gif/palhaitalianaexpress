@@ -713,7 +713,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 75,
     yield: '40 unidades',
-    prepTime: '40 minutos + 2h refrigeração',
+    prepTime: '40 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Coco ralado', quantity: '150', unit: 'gramas', notes: 'para queimar' },
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)' },
