@@ -306,6 +306,9 @@ export function ChatAssistant() {
 
             {/* Input */}
             <div className="p-3 border-t border-border bg-card/50">
+              <div className="text-[10px] text-muted-foreground text-center mb-1.5">
+                {Math.max(0, MAX_DAILY_MESSAGES - getDailyCount().count)} mensagens restantes hoje
+              </div>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
