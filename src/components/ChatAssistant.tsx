@@ -17,6 +17,28 @@ const QUICK_SUGGESTIONS = [
 ];
 
 const STORAGE_KEY = "chef-ai-history";
+const DAILY_LIMIT_KEY = "chef-ai-daily";
+const MAX_DAILY_MESSAGES = 15;
+
+function getDailyCount(): { count: number; date: string } {
+  try {
+    const stored = localStorage.getItem(DAILY_LIMIT_KEY);
+    if (stored) {
+      const data = JSON.parse(stored);
+      const today = new Date().toDateString();
+      if (data.date === today) return data;
+    }
+  } catch {}
+  return { count: 0, date: new Date().toDateString() };
+}
+
+function incrementDailyCount() {
+  const today = new Date().toDateString();
+  const current = getDailyCount();
+  const updated = { count: current.date === today ? current.count + 1 : 1, date: today };
+  localStorage.setItem(DAILY_LIMIT_KEY, JSON.stringify(updated));
+  return updated.count;
+}
 
 export function ChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -117,7 +139,20 @@ export function ChatAssistant() {
   const send = async (text?: string) => {
     const msg = text || input.trim();
     if (!msg || isLoading) return;
+
+    // Check daily limit
+    const daily = getDailyCount();
+    const remaining = MAX_DAILY_MESSAGES - daily.count;
+    if (remaining <= 0) {
+      toast({
+        title: "Limite diário atingido",
+        description: `Você usou suas ${MAX_DAILY_MESSAGES} mensagens de hoje. Volte amanhã! 😊`,
+      });
+      return;
+    }
+
     setInput("");
+    incrementDailyCount();
 
     const userMsg: Msg = { role: "user", content: msg };
     const newMessages = [...messages, userMsg];
@@ -271,6 +306,9 @@ export function ChatAssistant() {
 
             {/* Input */}
             <div className="p-3 border-t border-border bg-card/50">
+              <div className="text-[10px] text-muted-foreground text-center mb-1.5">
+                {Math.max(0, MAX_DAILY_MESSAGES - getDailyCount().count)} mensagens restantes hoje
+              </div>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
