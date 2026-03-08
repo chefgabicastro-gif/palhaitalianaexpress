@@ -959,7 +959,7 @@ export const recipes: Recipe[] = [
     difficulty: 'medium',
     xpReward: 75,
     yield: '40 unidades',
-    prepTime: '35 minutos + 2h refrigeração',
+    prepTime: '35 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Amendoim torrado sem pele', quantity: '150', unit: 'gramas' },
       { item: 'Açúcar', quantity: '3', unit: 'colheres de sopa (45g)', notes: 'para caramelizar' },
