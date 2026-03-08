@@ -1303,7 +1303,7 @@ export const recipes: Recipe[] = [
     xpReward: 75,
     isSeasonal: true,
     yield: '40 unidades',
-    prepTime: '45 minutos + 3h refrigeração',
+    prepTime: '45 minutos + 4-6h refrigeração',
     ingredients: [
       { item: 'Leite condensado', quantity: '1', unit: 'lata (395g)', notes: 'para massa de ninho' },
       { item: 'Creme de leite', quantity: '1/2', unit: 'caixa (100g)', notes: 'para massa de ninho' },
