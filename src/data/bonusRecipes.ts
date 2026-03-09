@@ -2372,3 +2372,12 @@ export const bonusRecipes: Recipe[] = [
     tips: ['Produto de altíssima demanda o ano todo', 'Ofereça vários toppings como diferencial', 'Margem de lucro: 300-500%'],
   },
 ];
+
+export const getBonusRecipesByCategory = (categoryId: string) =>
+  bonusRecipes.filter(r => r.category === categoryId);
+
+export const getPopularBonusRecipes = () =>
+  bonusRecipes.filter(r => r.isPopular);
+
+export const getBonusRecipeById = (id: string) =>
+  bonusRecipes.find(r => r.id === id);
