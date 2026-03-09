@@ -29,6 +29,34 @@ export const bonusRecipeCategories = [
     description: 'Tendência americana que conquista!',
     color: 'destructive',
   },
+  {
+    id: 'pao-de-mel',
+    name: 'Pão de Mel',
+    emoji: '🍯',
+    description: 'Tradição com recheio e cobertura irresistível',
+    color: 'primary',
+  },
+  {
+    id: 'alfajor',
+    name: 'Alfajores',
+    emoji: '🇦🇷',
+    description: 'Sucesso argentino adaptado ao paladar brasileiro',
+    color: 'accent',
+  },
+  {
+    id: 'bem-casado',
+    name: 'Bem Casados',
+    emoji: '💒',
+    description: 'Sofisticação para casamentos e eventos',
+    color: 'gold',
+  },
+  {
+    id: 'doces-gelados',
+    name: 'Doces Gelados',
+    emoji: '🧊',
+    description: 'Sobremesas geladas que refrescam e vendem!',
+    color: 'destructive',
+  },
 ];
 
 export const bonusRecipes: Recipe[] = [
