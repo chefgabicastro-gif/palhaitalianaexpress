@@ -21,12 +21,8 @@ export default function Modulos() {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    if (!user) {
-      navigate('/auth');
-      return;
-    }
     fetchProgress();
-  }, [user, navigate]);
+  }, []);
 
   const fetchProgress = async () => {
     if (!user) return;

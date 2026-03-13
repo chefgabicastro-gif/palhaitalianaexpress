@@ -22,12 +22,8 @@ export default function Graficos() {
   const [period, setPeriod] = useState<'week' | 'month' | 'year'>('month');
 
   useEffect(() => {
-    if (!user) {
-      navigate('/auth');
-      return;
-    }
     fetchSales();
-  }, [user, navigate]);
+  }, []);
 
   const fetchSales = async () => {
     try {

@@ -21,12 +21,8 @@ export default function Aulas() {
   const [userXp, setUserXp] = useState(0);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    if (!user) {
-      navigate('/auth');
-      return;
-    }
     fetchProgress();
-  }, [user, navigate]);
+  }, []);
   const fetchProgress = async () => {
     if (!user) return;
     try {
