@@ -27,12 +27,8 @@ export default function Conquistas() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) {
-      navigate('/auth');
-      return;
-    }
     fetchAchievements();
-  }, [user, navigate]);
+  }, []);
 
   const fetchAchievements = async () => {
     try {
