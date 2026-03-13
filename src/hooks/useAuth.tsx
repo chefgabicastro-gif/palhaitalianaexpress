@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface FakeUser {
   id: string;
@@ -6,11 +6,9 @@ interface FakeUser {
 }
 
 interface AuthContextType {
-  user: FakeUser | null;
+  user: FakeUser;
   session: null;
   loading: boolean;
-  signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
-  signUp: (email: string, password: string, name: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 }
 
@@ -27,38 +25,16 @@ function getAnonymousId(): string {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const chefName = localStorage.getItem('chef-name');
-  const [user] = useState<FakeUser | null>(
-    chefName ? { id: getAnonymousId() } : null
-  );
+  const [currentUser] = useState<FakeUser>({ id: getAnonymousId() });
 
-  // Listen for storage changes (when name is set during onboarding)
-  const [currentUser, setCurrentUser] = useState<FakeUser | null>(user);
-
-  useEffect(() => {
-    const checkName = () => {
-      const name = localStorage.getItem('chef-name');
-      if (name) {
-        setCurrentUser({ id: getAnonymousId() });
-      } else {
-        setCurrentUser(null);
-      }
-    };
-
-    window.addEventListener('storage', checkName);
-    return () => window.removeEventListener('storage', checkName);
-  }, []);
-
-  const signIn = async () => ({ error: null });
-  const signUp = async () => ({ error: null });
   const signOut = async () => {
     localStorage.removeItem('chef-name');
     localStorage.removeItem('chef-anonymous-id');
-    window.location.href = '/auth';
+    window.location.href = '/';
   };
 
   return (
-    <AuthContext.Provider value={{ user: currentUser, session: null, loading: false, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user: currentUser, session: null, loading: false, signOut }}>
       {children}
     </AuthContext.Provider>
   );
