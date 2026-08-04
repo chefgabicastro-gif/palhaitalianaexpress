@@ -33,6 +33,7 @@ import { InstallAppModal } from "@/components/InstallAppModal";
 import { CardapioDigitalModal } from "@/components/CardapioDigitalModal";
 import { VideoPlayerModal } from "@/components/VideoPlayerModal";
 import EbookModal from "@/components/EbookModal";
+import { AlfajorLucrativoSection } from "@/components/AlfajorLucrativoSection";
 import { FeaturedLessonModal } from "@/components/FeaturedLessonModal";
 import { PrecificacaoCalculadora } from "@/components/PrecificacaoCalculadora";
 import { BoloCaseiroBonusSection } from "@/components/BoloCaseiroBonusSection";
@@ -395,6 +396,9 @@ const Index = () => {
 
         {/* SEÇÃO BÔNUS - Doces Extras */}
         <DocesExtraBonusSection />
+
+        {/* SEÇÃO BÔNUS - Alfajor Lucrativo */}
+        <AlfajorLucrativoSection />
 
         {/* SEÇÃO - Apostilas Extras / Material Complementar */}
         <div className="mb-6 animate-fade-in" style={{ animationDelay: '35ms' }}>
