@@ -92,7 +92,7 @@ const Index = () => {
       title: 'Aulão Palha Italiana Tradicional',
       description: 'Produção completa gastando apenas R$ 30,00 em ingredientes',
       videoUrl: 'https://www.youtube.com/embed/yyQrt2HLEzY',
-      thumbnail: thumbAulaoTradicional30,
+      thumbnail: aulaoTradicional30Asset.url,
       materialUrl: '/materials/palha-tradicional-material.pdf',
       duration: '30:00',
       xp: 150,
