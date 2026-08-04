@@ -87,6 +87,17 @@ const Index = () => {
   // Featured lessons data
   const featuredLessons = [
     {
+      id: 'aulao-palha-tradicional-30',
+      title: 'Aulão Palha Italiana Tradicional',
+      description: 'Produção completa gastando apenas R$ 30,00 em ingredientes',
+      videoUrl: 'https://www.youtube.com/embed/yyQrt2HLEzY',
+      thumbnail: thumbAulaoTradicional30,
+      materialUrl: '/materials/palha-tradicional-material.pdf',
+      duration: '30:00',
+      xp: 150,
+      badge: 'Aulão Novo'
+    },
+    {
       id: 'palha-tradicional',
       title: 'Palha Italiana Tradicional',
       description: 'A receita clássica que conquistou o Brasil',
