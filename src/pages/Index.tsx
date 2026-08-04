@@ -7,6 +7,7 @@ import {
   GraduationCap, Package, FileImage, Megaphone, Palette, MessageCircle, FileText
 } from "lucide-react";
 import thumbPalhaTradicional from "@/assets/thumbnails/aula-palha-tradicional.jpg";
+import aulaoTradicional30Asset from "@/assets/aulao-palha-tradicional-30.webp.asset.json";
 import thumbPalhaNinho from "@/assets/thumbnails/aula-palha-ninho.jpg";
 import thumbPalhaLimao from "@/assets/thumbnails/aula-palha-limao.jpg";
 import thumbPalhaPistache from "@/assets/thumbnails/aula-palha-pistache.jpg";
@@ -86,6 +87,17 @@ const Index = () => {
 
   // Featured lessons data
   const featuredLessons = [
+    {
+      id: 'aulao-palha-tradicional-30',
+      title: 'Aulão Palha Italiana Tradicional',
+      description: 'Produção completa gastando apenas R$ 30,00 em ingredientes',
+      videoUrl: 'https://www.youtube.com/embed/yyQrt2HLEzY',
+      thumbnail: aulaoTradicional30Asset.url,
+      materialUrl: '/materials/palha-tradicional-material.pdf',
+      duration: '30:00',
+      xp: 150,
+      badge: 'Aulão Novo'
+    },
     {
       id: 'palha-tradicional',
       title: 'Palha Italiana Tradicional',
